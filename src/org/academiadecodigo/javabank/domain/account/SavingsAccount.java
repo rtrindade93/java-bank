@@ -1,6 +1,6 @@
 package org.academiadecodigo.javabank.domain.account;
 
-public class SavingsAccount extends Account {
+public class SavingsAccount extends AbstractAccount {
 
     public static final double MIN_BALANCE = 100;
 
@@ -14,12 +14,7 @@ public class SavingsAccount extends Account {
     }
 
     @Override
-    public void debit(double amount) {
-
-        if (getBalance() - amount < MIN_BALANCE) {
-            return;
-        }
-
-        super.debit(amount);
+    public boolean canDebit(double amount) {
+        return super.canDebit(amount) && (getBalance() - amount) >= MIN_BALANCE;
     }
 }
