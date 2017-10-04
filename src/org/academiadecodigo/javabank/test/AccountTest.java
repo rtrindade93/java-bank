@@ -1,28 +1,28 @@
 package org.academiadecodigo.javabank.test;
 
 import org.academiadecodigo.javabank.domain.Account;
-import org.academiadecodigo.javabank.domain.AccountType;
+import org.academiadecodigo.javabank.domain.CheckingAccount;
 
 public class AccountTest {
 
     public boolean test() {
 
-        Account account = new Account(1, AccountType.CHECKING);
+        Account checkingAccount = new CheckingAccount(1);
 
         // account should start with zero money
-        if (account.getBalance() != 0) {
+        if (checkingAccount.getBalance() != 0) {
             return false;
         }
 
         // we should be able to deposit money in account
-        account.credit(80);
-        if (account.getBalance() != 80) {
+        checkingAccount.credit(80);
+        if (checkingAccount.getBalance() != 80) {
             return false;
         }
 
         // we should be able to take money from account
-        account.debit(40);
-        if (account.getBalance() != 40) {
+        checkingAccount.debit(40);
+        if (checkingAccount.getBalance() != 40) {
             return  false;
         }
 
