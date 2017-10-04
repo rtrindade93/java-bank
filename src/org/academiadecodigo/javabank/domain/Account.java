@@ -13,10 +13,9 @@ public abstract class Account {
         balance += amount;
     }
 
-    public void debit(double amount) {
-        if (balance >= amount) {
-            balance -= amount;
-        }
+    public boolean debit(double amount) {
+        balance -= amount;
+        return true;
     }
 
     public double getBalance() {

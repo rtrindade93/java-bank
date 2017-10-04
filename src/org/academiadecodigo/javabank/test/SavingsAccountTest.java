@@ -15,6 +15,20 @@ public class SavingsAccountTest {
             return false;
         }
 
+        savingsAccount.credit(150);
+
+        // we should not be able to take money making balance under minimum (100)
+        savingsAccount.debit(60);
+        if(savingsAccount.getBalance() != 150) {
+            return false;
+        }
+
+        // we should be able to take money from account
+        savingsAccount.debit(40);
+        if(savingsAccount.getBalance() != 110) {
+            return false;
+        }
+
         return true;
     }
 }

@@ -20,12 +20,6 @@ public class AccountTest {
             return false;
         }
 
-        // we should be able to take money from account
-        checkingAccount.debit(40);
-        if (checkingAccount.getBalance() != 40) {
-            return  false;
-        }
-
         return true;
     }
 
