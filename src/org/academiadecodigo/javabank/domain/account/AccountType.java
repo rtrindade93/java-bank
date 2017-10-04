@@ -1,4 +1,4 @@
-package org.academiadecodigo.javabank.domain;
+package org.academiadecodigo.javabank.domain.account;
 
 public enum AccountType {
 

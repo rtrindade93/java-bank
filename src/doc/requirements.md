@@ -24,43 +24,42 @@ The Bank balance equals the sum of the balances of all customers.
 1. Bank should be able to check the combined balance of all customers
 
 ## Identifying Objects & Responsibilities
-Bank, Customer, Checking, Savings, Account, Money
 
 ### Bank
 Represents the Banking service, contains costumers
 
-### Responsibilities
+#### Responsibilities
 * add a new customer
 * get balance
 
-### Collaborators
+#### Collaborators
 * Customer
 
-## Customer
+### Customer
 Represents bank customers, contains accounts
 
-### Responsibilities
+#### Responsibilities
 * add a new account
 * deposit money on account
 * withdraw money from account
 * transfer between accounts
 * get balance
 
-### Collaborators
+#### Collaborators
 * Account
 
-## Account
+### Account
 Represents a Bank Account, contains money
 
-### Responsibilities
+#### Responsibilities
 * credit
 * debit
 * get balance
 
-## High Level Design
+## Design Decisions
 
-* Inheritance is an obvious choice for modeling different account types, but was not used deliberatly
-* Customer contains Accounts seemed like a better choice than Accounts belong to Customer
+* Inheritance used with generic Account class and specific CheckingAccount and SavingsAccount classes
+* Composition and delegation used with AccountManager containing and performing all account related operations (less responsibility to customer)
 * Account objects are stored in Map container for quick and convenient access
 * Customer objects are stored in Set container to prevent duplicates
 
