@@ -13,7 +13,7 @@ public class CheckingAccount extends Account {
 
     @Override
     public boolean debit(double amount) {
-        if(super.getBalance() < amount) {
+        if(getBalance() < amount) {
             return false;
         }
 
