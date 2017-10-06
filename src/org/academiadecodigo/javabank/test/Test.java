@@ -9,12 +9,14 @@ public class Test {
         AccountManagerTest accountManagerTest = new AccountManagerTest();
         CustomerTest customerTest = new CustomerTest();
         BankTest bankTest = new BankTest();
+        AccountFactoryTest accountFactoryTest = new AccountFactoryTest();
 
         System.out.println("CheckingAccount: " + (checkingAccountTest.test() ? "OK" : "FAIL"));
         System.out.println("SavingsAccount: " + (savingsAccountTest.test() ? "OK" : "FAIL"));
         System.out.println("AccountManager: " + (accountManagerTest.test() ? "OK" : "FAIL"));
         System.out.println("Customer: " + (customerTest.test() ? "OK" : "FAIL"));
         System.out.println("Bank: " + (bankTest.test() ? "OK" : "FAIL"));
+        System.out.println("AccountFactory: " + (accountFactoryTest.test() ? "OK" : "FAIL"));
 
     }
 
