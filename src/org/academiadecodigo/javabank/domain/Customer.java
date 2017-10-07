@@ -6,6 +6,7 @@ import org.academiadecodigo.javabank.managers.AccountManager;
 
 import java.security.PublicKey;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -60,6 +61,18 @@ public class Customer {
     public Set<Integer> getCustomerAccountsNumber() {
         return accounts.keySet();
     }
+
+    /*public Set<Integer> getCustomerAccountsNumber(AccountType accountType) {
+        Set<Integer> accountsNumber = new HashSet<>();
+
+        for (Account account : accounts.values()) {
+            if (account.getAccountType() == accountType) {
+                accountsNumber.add(account.getId());
+            }
+        }
+
+        return accountsNumber;
+    }*/
 
     public AccountManager getAccountManager() {
         return accountManager;

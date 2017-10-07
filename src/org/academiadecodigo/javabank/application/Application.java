@@ -12,14 +12,14 @@ public class Application {
     private Bank bank;
     private AccountManager accountManager;
     private Customer customer;
+
     private Prompt prompt;
 
-    MenuInputScanner menuScanner;
-    String[] options = {"Open Account", "Balance", "Deposit", "Withdraw", "Transfer", "Quit"};
-    Option[] operations = {new OpenAccount(), new GetBalance(), new Deposit(), new Withdraw(), new Transfer()};
+    private MenuInputScanner menuScanner;
+    private String[] options = {"Open Account", "Balance", "Total Balance", "Deposit", "Withdraw", "Transfer", "Quit"};
+    private Option[] operations = {new OpenAccount(), new GetBalance(), new GetTotalBalance(), new Deposit(), new Withdraw(), new Transfer()};
 
     public Application() {
-        prompt = new Prompt(System.in, System.out);
 
         accountManager = new AccountManager();
         bank = new Bank(accountManager);
@@ -30,6 +30,8 @@ public class Application {
         bank.addCustomer(customer1);
         bank.addCustomer(customer2);
         bank.addCustomer(customer3);
+
+        prompt = new Prompt(System.in, System.out);
 
         menuScanner = new MenuInputScanner(options);
         menuScanner.setMessage("Choose an option: ");

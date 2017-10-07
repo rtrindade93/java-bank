@@ -15,7 +15,8 @@ public class Withdraw implements Option {
 
         Prompt prompt = new Prompt(System.in, System.out);
         IntegerSetInputScanner scanner = new IntegerSetInputScanner(accountsNumber);
-        scanner.setMessage("Choose one of your accounts (" + accountsNumber.toString() + ") :");
+        scanner.setMessage("Choose one of your accounts " + accountsNumber.toString() + " :");
+        scanner.setError("Invalid account!");
 
         int accountID = prompt.getUserInput(scanner);
         AccountManager accountManager = customer.getAccountManager();

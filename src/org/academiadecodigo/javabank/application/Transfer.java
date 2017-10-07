@@ -15,11 +15,12 @@ public class Transfer implements Option {
 
         Prompt prompt = new Prompt(System.in, System.out);
         IntegerSetInputScanner scanner = new IntegerSetInputScanner(accountsNumber);
-        scanner.setMessage("Choose the source account from your accounts (" + accountsNumber.toString() + ") :");
+        scanner.setMessage("Choose the source account from your accounts " + accountsNumber.toString() + " :");
+        scanner.setError("Invalid account!");
 
         int srcID = prompt.getUserInput(scanner);
         
-        scanner.setMessage("Choose the destination account from your accounts (" + accountsNumber.toString() + ") :");
+        scanner.setMessage("Choose the destination account from your accounts " + accountsNumber.toString() + " :");
 
         int destID = prompt.getUserInput(scanner);
 

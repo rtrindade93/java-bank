@@ -13,7 +13,8 @@ public class GetBalance implements Option {
 
         Prompt prompt = new Prompt(System.in, System.out);
         IntegerSetInputScanner scanner = new IntegerSetInputScanner(accountsNumber);
-        scanner.setMessage("Choose one of your accounts (" + accountsNumber + ") :");
+        scanner.setMessage("Choose one of your accounts " + accountsNumber.toString() + " :");
+        scanner.setError("Invalid account!");
 
         System.out.println("Balance: " + customer.getBalance(prompt.getUserInput(scanner)));
     }
