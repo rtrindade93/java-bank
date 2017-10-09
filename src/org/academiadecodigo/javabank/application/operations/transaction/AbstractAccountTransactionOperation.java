@@ -8,8 +8,6 @@ import org.academiadecodigo.javabank.application.Messages;
 import org.academiadecodigo.javabank.application.operations.AbstractBankOperation;
 import org.academiadecodigo.javabank.managers.AccountManager;
 
-import java.util.HashSet;
-
 public abstract class AbstractAccountTransactionOperation extends AbstractBankOperation {
 
     protected AccountManager accountManager;
@@ -47,7 +45,7 @@ public abstract class AbstractAccountTransactionOperation extends AbstractBankOp
 
     protected int scanAccount() {
 
-        IntegerSetInputScanner scanner = new IntegerSetInputScanner(new HashSet<>(customer.getAccountIds()));
+        IntegerSetInputScanner scanner = new IntegerSetInputScanner(customer.getAccountIds());
         scanner.setMessage(Messages.CHOOSE_ACCOUNT);
         scanner.setError(Messages.ERROR_INVALID_ACCOUNT);
         return prompt.getUserInput(scanner);
