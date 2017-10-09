@@ -1,4 +1,4 @@
-package org.academiadecodigo.javabank.views.operations.transactions;
+package org.academiadecodigo.javabank.views.transactions;
 
 import org.academiadecodigo.bootcamp.Prompt;
 import org.academiadecodigo.bootcamp.scanners.integer.IntegerSetInputScanner;

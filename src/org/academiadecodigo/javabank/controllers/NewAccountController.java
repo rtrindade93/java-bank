@@ -1,15 +1,16 @@
-package org.academiadecodigo.javabank.controllers.operations.transactions;
+package org.academiadecodigo.javabank.controllers;
 
 import org.academiadecodigo.javabank.controllers.Controller;
 import org.academiadecodigo.javabank.models.Bank;
+import org.academiadecodigo.javabank.models.account.AccountType;
 import org.academiadecodigo.javabank.views.View;
 
-public class WithdrawController implements Controller {
+public class NewAccountController implements Controller {
 
     private View view;
     private Bank bank;
 
-    public WithdrawController(Bank bank) {
+    public NewAccountController(Bank bank) {
         this.bank = bank;
     }
 
@@ -23,7 +24,7 @@ public class WithdrawController implements Controller {
         this.view = view;
     }
 
-    public void withdraw(int accountId, double amount) {
-        bank.getAccountManager().withdraw(accountId, amount);
+    public int openAccount(AccountType accountType) {
+        return bank.getCustomer(bank.getAcessingCustomerId()).openAccount(accountType);
     }
 }

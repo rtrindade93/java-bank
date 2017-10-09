@@ -1,15 +1,15 @@
-package org.academiadecodigo.javabank.controllers.operations.transactions;
+package org.academiadecodigo.javabank.controllers.transactions;
 
 import org.academiadecodigo.javabank.controllers.Controller;
 import org.academiadecodigo.javabank.models.Bank;
 import org.academiadecodigo.javabank.views.View;
 
-public class DepositController implements Controller {
+public class WithdrawController implements Controller {
 
     private View view;
     private Bank bank;
 
-    public DepositController(Bank bank) {
+    public WithdrawController(Bank bank) {
         this.bank = bank;
     }
 
@@ -23,7 +23,7 @@ public class DepositController implements Controller {
         this.view = view;
     }
 
-    public void deposit(int accountId, double amount) {
-        bank.getAccountManager().deposit(accountId, amount);
+    public void withdraw(int accountId, double amount) {
+        bank.getAccountManager().withdraw(accountId, amount);
     }
 }

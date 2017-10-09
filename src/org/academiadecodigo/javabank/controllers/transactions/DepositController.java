@@ -1,16 +1,15 @@
-package org.academiadecodigo.javabank.controllers.operations;
+package org.academiadecodigo.javabank.controllers.transactions;
 
 import org.academiadecodigo.javabank.controllers.Controller;
 import org.academiadecodigo.javabank.models.Bank;
-import org.academiadecodigo.javabank.models.account.AccountType;
 import org.academiadecodigo.javabank.views.View;
 
-public class NewAccountController implements Controller {
+public class DepositController implements Controller {
 
     private View view;
     private Bank bank;
 
-    public NewAccountController(Bank bank) {
+    public DepositController(Bank bank) {
         this.bank = bank;
     }
 
@@ -24,7 +23,7 @@ public class NewAccountController implements Controller {
         this.view = view;
     }
 
-    public int openAccount(AccountType accountType) {
-        return bank.getCustomer(bank.getAcessingCustomerId()).openAccount(accountType);
+    public void deposit(int accountId, double amount) {
+        bank.getAccountManager().deposit(accountId, amount);
     }
 }

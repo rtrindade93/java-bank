@@ -2,32 +2,29 @@ package org.academiadecodigo.javabank;
 
 import org.academiadecodigo.bootcamp.Prompt;
 import org.academiadecodigo.javabank.application.UserOptions;
-import org.academiadecodigo.javabank.controllers.operations.BalanceController;
+import org.academiadecodigo.javabank.controllers.BalanceController;
 import org.academiadecodigo.javabank.controllers.Controller;
 import org.academiadecodigo.javabank.controllers.LogInController;
 import org.academiadecodigo.javabank.controllers.MainMenuController;
-import org.academiadecodigo.javabank.controllers.operations.NewAccountController;
-import org.academiadecodigo.javabank.controllers.operations.transactions.DepositController;
-import org.academiadecodigo.javabank.controllers.operations.transactions.WithdrawController;
+import org.academiadecodigo.javabank.controllers.NewAccountController;
+import org.academiadecodigo.javabank.controllers.transactions.DepositController;
+import org.academiadecodigo.javabank.controllers.transactions.WithdrawController;
 import org.academiadecodigo.javabank.models.Bank;
 import org.academiadecodigo.javabank.models.Customer;
-import org.academiadecodigo.javabank.models.account.AccountType;
 import org.academiadecodigo.javabank.models.managers.AccountManager;
-import org.academiadecodigo.javabank.views.operations.BalanceView;
+import org.academiadecodigo.javabank.views.BalanceView;
 import org.academiadecodigo.javabank.views.LogInView;
 import org.academiadecodigo.javabank.views.MainMenuView;
-import org.academiadecodigo.javabank.views.operations.NewAccountView;
-import org.academiadecodigo.javabank.views.operations.transactions.DepositView;
-import org.academiadecodigo.javabank.views.operations.transactions.WithdrawView;
+import org.academiadecodigo.javabank.views.NewAccountView;
+import org.academiadecodigo.javabank.views.transactions.DepositView;
+import org.academiadecodigo.javabank.views.transactions.WithdrawView;
 
-import javax.jws.soap.SOAPBinding;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Boot {
 
     private Bank bank;
-    private AccountManager accountManager;
     private Prompt prompt;
     //Controllers
     private LogInController logInController;
@@ -46,7 +43,7 @@ public class Boot {
 
     public Boot() {
         bank = new Bank();
-        accountManager = new AccountManager();
+        AccountManager accountManager = new AccountManager();
         bank.setAccountManager(accountManager);
         prompt = new Prompt(System.in, System.out);
     }

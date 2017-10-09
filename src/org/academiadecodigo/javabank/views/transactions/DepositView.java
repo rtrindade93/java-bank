@@ -1,15 +1,15 @@
-package org.academiadecodigo.javabank.views.operations.transactions;
+package org.academiadecodigo.javabank.views.transactions;
 
 import org.academiadecodigo.bootcamp.Prompt;
 import org.academiadecodigo.javabank.controllers.Controller;
-import org.academiadecodigo.javabank.controllers.operations.transactions.WithdrawController;
+import org.academiadecodigo.javabank.controllers.transactions.DepositController;
 import org.academiadecodigo.javabank.models.Bank;
 
-public class WithdrawView extends AbstractAccountTransationView {
+public class DepositView extends AbstractAccountTransationView {
 
-    private WithdrawController withdrawController;
+    private DepositController depositController;
 
-    public WithdrawView(Bank bank, Prompt prompt) {
+    public DepositView(Bank bank, Prompt prompt) {
         super(bank, prompt);
     }
 
@@ -25,12 +25,12 @@ public class WithdrawView extends AbstractAccountTransationView {
         Double amount = scanAmount();
 
         if (bank.getCustomer(bank.getAcessingCustomerId()).getAccountIds().contains(accountId)) {
-            withdrawController.withdraw(accountId, amount);
+            depositController.deposit(accountId, amount);
         }
     }
 
     @Override
     public void setController(Controller controller) {
-        withdrawController = (WithdrawController) controller;
+        depositController = (DepositController) controller;
     }
 }

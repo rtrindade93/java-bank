@@ -1,9 +1,9 @@
-package org.academiadecodigo.javabank.views.operations;
+package org.academiadecodigo.javabank.views;
 
 import org.academiadecodigo.bootcamp.Prompt;
 import org.academiadecodigo.javabank.application.Messages;
 import org.academiadecodigo.javabank.controllers.Controller;
-import org.academiadecodigo.javabank.controllers.operations.NewAccountController;
+import org.academiadecodigo.javabank.controllers.NewAccountController;
 import org.academiadecodigo.javabank.models.Bank;
 import org.academiadecodigo.javabank.models.account.AccountType;
 import org.academiadecodigo.javabank.views.AbstractView;
