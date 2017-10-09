@@ -2,35 +2,25 @@ package org.academiadecodigo.javabank.managers;
 
 import org.academiadecodigo.javabank.domain.account.Account;
 import org.academiadecodigo.javabank.domain.account.AccountType;
-import org.academiadecodigo.javabank.domain.account.CheckingAccount;
 import org.academiadecodigo.javabank.domain.account.SavingsAccount;
+import org.academiadecodigo.javabank.factories.AccountFactory;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class AccountManager {
 
-    private static int numberAccounts = 0;
-    Map<Integer, Account> accountMap;
+    private AccountFactory accountFactory = new AccountFactory();
+    private Map<Integer, Account> accountMap;
 
     public AccountManager() {
-        this.accountMap = new HashMap<>();
+        accountMap = new HashMap<>();
     }
 
     public Account openAccount(AccountType accountType) {
-
-        Account newAccount;
-
-        numberAccounts++;
-        if (accountType == AccountType.CHECKING) {
-            newAccount = new CheckingAccount(numberAccounts);
-        } else {
-            newAccount = new SavingsAccount(numberAccounts);
-        }
-
+        Account newAccount = accountFactory.createAccount(accountType);
         accountMap.put(newAccount.getId(), newAccount);
         return newAccount;
-
     }
 
     public void deposit(int id, double amount) {
@@ -40,7 +30,6 @@ public class AccountManager {
     public void withdraw(int id, double amount) {
 
         Account account = accountMap.get(id);
-
         if (account.getAccountType() == AccountType.SAVINGS) {
             return;
         }
@@ -53,19 +42,10 @@ public class AccountManager {
         Account srcAccount = accountMap.get(srcId);
         Account dstAccount = accountMap.get(dstId);
 
-        // make sure src account has sufficient funds
-        if (srcAccount.getBalance() < amount) {
-            return;
+        // make sure transaction can be performed
+        if (srcAccount.canDebit(amount) && dstAccount.canCredit(amount)) {
+            srcAccount.debit(amount);
+            dstAccount.credit(amount);
         }
-
-        // if src account is savings, we need to keep a minimum balance
-        if (srcAccount.getAccountType() == AccountType.SAVINGS &&
-                srcAccount.getBalance() < SavingsAccount.MIN_BALANCE + amount) {
-            return;
-        }
-
-        srcAccount.debit(amount);
-        dstAccount.credit(amount);
-
     }
 }
