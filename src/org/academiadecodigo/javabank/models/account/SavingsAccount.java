@@ -1,4 +1,4 @@
-package org.academiadecodigo.javabank.domain.account;
+package org.academiadecodigo.javabank.models.account;
 
 public class SavingsAccount extends AbstractAccount {
 

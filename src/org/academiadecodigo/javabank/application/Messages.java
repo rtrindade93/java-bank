@@ -1,8 +1,6 @@
 package org.academiadecodigo.javabank.application;
 
 public class Messages {
-
-
     public final static String MENU_WELCOME = "Welcome to Java Bank";
     public final static String MENU_OPEN_ACCOUNT = "Open Account";
     public final static String MENU_DEPOSIT = "Make Deposit";
@@ -23,6 +21,5 @@ public class Messages {
     public final static String ERROR_NO_ACCOUNT = "Open a bank account first, please!";
     public final static String ERROR_INVALID_ACCOUNT = "That is an invalid account!";
     public final static String ERROR_INVALID_AMOUNT = "That is an invalid amount!";
-
 
 }
