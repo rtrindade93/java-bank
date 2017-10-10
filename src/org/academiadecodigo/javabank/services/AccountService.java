@@ -6,6 +6,7 @@ import org.academiadecodigo.javabank.factories.AccountFactory;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class AccountService {
 
@@ -50,5 +51,19 @@ public class AccountService {
             srcAccount.debit(amount);
             dstAccount.credit(amount);
         }
+    }
+
+    public double getBalance(int accountId) {
+        return accountMap.get(accountId).getBalance();
+    }
+
+    public double getBalance(Set<Integer> accounts) {
+        double balance = 0;
+
+        for(Integer account: accounts) {
+            balance += accountMap.get(account).getBalance();
+        }
+
+        return balance;
     }
 }

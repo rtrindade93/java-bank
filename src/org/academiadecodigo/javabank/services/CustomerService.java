@@ -10,8 +10,6 @@ public class CustomerService {
     private AccountService accountService;
     private HashMap<Integer, Customer> customers;
 
-    private int loginCustomer;
-
     public CustomerService() {
         this.customers = new HashMap<>();
     }
@@ -29,7 +27,7 @@ public class CustomerService {
         double balance = 0;
 
         for (Customer customer : customers.values()) {
-            balance += customer.getBalance();
+            balance += accountService.getBalance(customer.getAccountIds());
         }
 
         return balance;
@@ -43,11 +41,7 @@ public class CustomerService {
         return accountService;
     }
 
-    public Customer getLoginCustomer() {
-        return customers.get(loginCustomer);
-    }
-
-    public void setLoginCustomer(int id) {
-        this.loginCustomer = id;
+    public Customer getCustomer(int id) {
+        return customers.get(id);
     }
 }

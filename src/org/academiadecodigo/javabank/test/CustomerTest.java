@@ -31,12 +31,12 @@ public class CustomerTest {
         // customer should be able to get the balance of each individual account
         accountService.deposit(ac.getId(), 100);
         accountService.deposit(as.getId(), SavingsAccount.MIN_BALANCE + 100);
-        if (customer.getBalance(ac.getId()) != 100 || customer.getBalance(as.getId()) != SavingsAccount.MIN_BALANCE + 100) {
+        if (accountService.getBalance(ac.getId()) != 100 || accountService.getBalance(as.getId()) != SavingsAccount.MIN_BALANCE + 100) {
             return false;
         }
 
         // customer should be able to get the combined balance of all its accounts
-        if (customer.getBalance() != 200 + SavingsAccount.MIN_BALANCE) {
+        if (accountService.getBalance(customer.getAccountIds()) != 200 + SavingsAccount.MIN_BALANCE) {
             return false;
         }
 

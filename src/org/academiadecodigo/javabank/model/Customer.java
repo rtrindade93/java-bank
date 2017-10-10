@@ -25,20 +25,6 @@ public class Customer {
         return new HashSet<>(accounts.values());
     }
 
-    public double getBalance(int id) {
-        return accounts.get(id).getBalance();
-    }
-
-    public double getBalance() {
-
-        double balance = 0;
-        for (Account account : accounts.values()) {
-            balance += account.getBalance();
-        }
-
-        return balance;
-    }
-
     public Set<Integer> getAccountIds() {
         return accounts.keySet();
     }

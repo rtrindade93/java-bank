@@ -4,6 +4,7 @@ import org.academiadecodigo.bootcamp.Prompt;
 import org.academiadecodigo.javabank.controller.transaction.DepositController;
 import org.academiadecodigo.javabank.controller.transaction.WithdrawalController;
 import org.academiadecodigo.javabank.services.AccountService;
+import org.academiadecodigo.javabank.services.AuthenticationService;
 import org.academiadecodigo.javabank.view.UserOptions;
 import org.academiadecodigo.javabank.controller.*;
 import org.academiadecodigo.javabank.services.CustomerService;
@@ -32,7 +33,7 @@ public class Bootstrap {
         return customerService;
     }
 
-    public LoginController wireObjects(CustomerService customerService) {
+    public LoginController wireObjects(CustomerService customerService, AuthenticationService authenticationService) {
 
         // attach all input to standard i/o
         Prompt prompt = new Prompt(System.in, System.out);
@@ -41,31 +42,34 @@ public class Bootstrap {
         LoginController loginController = new LoginController();
         LoginView loginView = new LoginView();
         loginController.setView(loginView);
-        loginController.setCustomerService(customerService);
-        loginView.setCustomerService(customerService);
+        loginController.setAuthenticationService(authenticationService);
         loginView.setLoginController(loginController);
         loginView.setPrompt(prompt);
 
         // wire main controller and view
         MainController mainController = new MainController();
         MainView mainView = new MainView();
-        mainView.setCustomerService(customerService);
         mainView.setPrompt(prompt);
         mainView.setMainController(mainController);
         mainController.setView(mainView);
+        mainController.setCustomerService(customerService);
+        mainController.setAuthenticationService(authenticationService);
         loginController.setNextController(mainController);
 
         // wire balance controller and view
         BalanceController balanceController = new BalanceController();
         BalanceView balanceView = new BalanceView();
+        balanceView.setBalanceController(balanceController);
         balanceController.setView(balanceView);
-        balanceView.setCustomerService(customerService);
+        balanceController.setCustomerService(customerService);
+        balanceController.setAuthenticationService(authenticationService);
 
         // wire new account controller and view
         NewAccountView newAccountView = new NewAccountView();
         NewAccountController newAccountController = new NewAccountController();
         newAccountController.setCustomerService(customerService);
         newAccountController.setView(newAccountView);
+        newAccountController.setAuthenticationService(authenticationService);
         newAccountView.setNewAccountController(newAccountController);
 
         // wire account transactions controllers and views
@@ -75,12 +79,12 @@ public class Bootstrap {
         AccountTransactionView withdrawView = new AccountTransactionView();
         depositController.setCustomerService(customerService);
         depositController.setView(depositView);
+        depositController.setAuthenticationService(authenticationService);
         withdrawalController.setCustomerService(customerService);
         withdrawalController.setView(withdrawView);
-        depositView.setCustomerService(customerService);
+        withdrawalController.setAuthenticationService(authenticationService);
         depositView.setPrompt(prompt);
         depositView.setTransactionController(depositController);
-        withdrawView.setCustomerService(customerService);
         withdrawView.setPrompt(prompt);
         withdrawView.setTransactionController(withdrawalController);
 

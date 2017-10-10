@@ -4,7 +4,7 @@ public class Messages {
 
     public final static String SYSTEM_ERROR = "The customerService system is having issues...";
 
-    public final static String VIEW_LOGIN_WELCOME = "Welcome to Java CustomerService";
+    public final static String VIEW_LOGIN_WELCOME = "Welcome to Java Bank";
     public final static String VIEW_LOGIN_MESSAGE = "Please insert your customer number: ";
     public final static String VIEW_LOGIN_ERROR = "ERROR: You do not seem to be a JavaBank customer";
 

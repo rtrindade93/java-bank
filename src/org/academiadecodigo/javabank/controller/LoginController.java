@@ -1,23 +1,22 @@
 package org.academiadecodigo.javabank.controller;
 
-import org.academiadecodigo.javabank.services.CustomerService;
+import org.academiadecodigo.javabank.view.InterfaceLoginView;
 
 public class LoginController extends AbstractController {
 
     private Controller nextController;
 
-    private CustomerService customerService;
-
     public void onLogin(int id) {
-        customerService.setLoginCustomer(id);
-        nextController.init();
+        if(authenticationService.authenticateCustomer(id)){
+            nextController.init();
+        }
+        else {
+            ((InterfaceLoginView) view).showError(); //TODO: please do not cast (now casting from interface but...)
+            init();
+        }
     }
 
     public void setNextController(Controller nextController) {
         this.nextController = nextController;
-    }
-
-    public void setCustomerService(CustomerService customerService) {
-        this.customerService = customerService;
     }
 }

@@ -1,5 +1,6 @@
 package org.academiadecodigo.javabank.controller;
 
+import org.academiadecodigo.javabank.services.CustomerService;
 import org.academiadecodigo.javabank.view.Messages;
 import org.academiadecodigo.javabank.view.UserOptions;
 
@@ -7,6 +8,7 @@ import java.util.Map;
 
 public class MainController extends AbstractController {
 
+    private CustomerService customerService;
     private Map<Integer, Controller> controllerMap;
 
     public void setControllerMap(Map<Integer, Controller> controllerMap) {
@@ -28,4 +30,11 @@ public class MainController extends AbstractController {
 
     }
 
+    public String getLoginCustomerName() {
+        return customerService.getCustomer(authenticationService.getLoginCustomer()).getName();
+    }
+
+    public void setCustomerService(CustomerService customerService) {
+        this.customerService = customerService;
+    }
 }
