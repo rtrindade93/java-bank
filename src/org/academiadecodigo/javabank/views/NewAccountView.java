@@ -6,7 +6,6 @@ import org.academiadecodigo.javabank.controllers.Controller;
 import org.academiadecodigo.javabank.controllers.NewAccountController;
 import org.academiadecodigo.javabank.models.Bank;
 import org.academiadecodigo.javabank.models.account.AccountType;
-import org.academiadecodigo.javabank.views.AbstractView;
 
 public class NewAccountView extends AbstractView {
 

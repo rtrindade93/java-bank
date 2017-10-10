@@ -11,6 +11,7 @@ import org.academiadecodigo.javabank.controllers.transactions.DepositController;
 import org.academiadecodigo.javabank.controllers.transactions.WithdrawController;
 import org.academiadecodigo.javabank.models.Bank;
 import org.academiadecodigo.javabank.models.Customer;
+import org.academiadecodigo.javabank.models.account.AccountType;
 import org.academiadecodigo.javabank.models.managers.AccountManager;
 import org.academiadecodigo.javabank.views.BalanceView;
 import org.academiadecodigo.javabank.views.LogInView;

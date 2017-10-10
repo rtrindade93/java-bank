@@ -1,6 +1,5 @@
 package org.academiadecodigo.javabank.controllers;
 
-import org.academiadecodigo.javabank.controllers.Controller;
 import org.academiadecodigo.javabank.models.Bank;
 import org.academiadecodigo.javabank.models.account.AccountType;
 import org.academiadecodigo.javabank.views.View;

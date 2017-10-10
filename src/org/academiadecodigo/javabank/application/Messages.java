@@ -21,5 +21,4 @@ public class Messages {
     public final static String ERROR_NO_ACCOUNT = "Open a bank account first, please!";
     public final static String ERROR_INVALID_ACCOUNT = "That is an invalid account!";
     public final static String ERROR_INVALID_AMOUNT = "That is an invalid amount!";
-
 }
