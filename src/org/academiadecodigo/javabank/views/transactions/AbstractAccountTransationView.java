@@ -17,12 +17,10 @@ public abstract class AbstractAccountTransationView extends AbstractView {
 
     @Override
     public void show() {
-        if (!hasAccounts()) {
-            System.out.println("\n" + Messages.ERROR_NO_ACCOUNT);
-            return;
-        }
 
-        System.out.println("\n" + Messages.OPEN_ACCOUNTS + buildAccountList());
+        if (hasAccounts()) {
+            System.out.println("\n" + Messages.OPEN_ACCOUNTS + buildAccountList());
+        }
 
     }
 

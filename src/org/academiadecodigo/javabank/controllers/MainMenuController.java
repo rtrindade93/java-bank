@@ -25,7 +25,7 @@ public class MainMenuController implements Controller {
     }
 
     public void setOption(int option){
-        if(option <= controllerMap.size()) {
+        if(controllerMap.containsKey(option)) {
             controllerMap.get(option).start();
             start();
         }
