@@ -1,14 +1,32 @@
 import controller.LoginController;
+import persistence.H2WebServer;
 import services.AccountServiceImpl;
 import services.AuthServiceImpl;
 import services.CustomerServiceImpl;
+
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+import java.sql.SQLException;
 
 public class App {
 
     public static void main(String[] args) {
 
-        App app = new App();
-        app.bootStrap();
+        try {
+            H2WebServer h2WebServer = new H2WebServer();
+            h2WebServer.start();
+
+            EntityManagerFactory emf = Persistence.createEntityManagerFactory("prod");
+
+            App app = new App();
+            app.bootStrap();
+
+            emf.close();
+            h2WebServer.stop();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
 
     }
 
