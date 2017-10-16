@@ -17,7 +17,7 @@ public class App {
             H2WebServer h2WebServer = new H2WebServer();
             h2WebServer.start();
 
-            EntityManagerFactory emf = Persistence.createEntityManagerFactory("prod");
+            EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
 
             App app = new App();
             app.bootStrap();

@@ -12,8 +12,7 @@ public class AccountServiceImpl implements AccountService {
     private Map<Integer, Account> accountMap = new HashMap<>();
 
     public void add(Account account) {
-
-        if (account.getId() == null) {
+        if(account.getId() == null) {
             account.setId(getNextId());
         }
 

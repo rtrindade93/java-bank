@@ -11,8 +11,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void add(Customer customer) {
-
-        if (customer.getId() == null) {
+        if(customer.getId() == null) {
             customer.setId(getNextId());
         }
 
