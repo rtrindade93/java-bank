@@ -7,7 +7,7 @@ import java.util.Set;
 
 public interface CustomerService {
 
-    void add(Customer customer);
+    Customer add(Customer customer);
 
     Customer findById(Integer id);
 
