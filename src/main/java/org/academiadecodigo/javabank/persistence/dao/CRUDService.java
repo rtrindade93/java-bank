@@ -1,4 +1,4 @@
-package org.academiadecodigo.javabank.services;
+package org.academiadecodigo.javabank.persistence.dao;
 
 import org.academiadecodigo.javabank.model.AbstractModel;
 

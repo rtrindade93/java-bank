@@ -1,7 +1,7 @@
 package org.academiadecodigo.javabank.services.mock;
 
 import org.academiadecodigo.javabank.model.AbstractModel;
-import org.academiadecodigo.javabank.services.CRUDService;
+import org.academiadecodigo.javabank.persistence.dao.CRUDService;
 
 import java.util.*;
 

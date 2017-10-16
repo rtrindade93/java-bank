@@ -1,13 +1,14 @@
 package org.academiadecodigo.javabank.services.jpa;
 
 import org.academiadecodigo.javabank.model.account.Account;
+import org.academiadecodigo.javabank.persistence.dao.AbstractDao;
 import org.academiadecodigo.javabank.services.AccountService;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.RollbackException;
 
-public class JpaAccountService extends AbstractJpaService<Account> implements AccountService {
+public class JpaAccountService extends AbstractDao<Account> implements AccountService {
 
     public JpaAccountService(EntityManagerFactory emf) {
         super(emf, Account.class);

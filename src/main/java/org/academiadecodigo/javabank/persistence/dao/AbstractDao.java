@@ -1,7 +1,6 @@
-package org.academiadecodigo.javabank.services.jpa;
+package org.academiadecodigo.javabank.persistence.dao;
 
 import org.academiadecodigo.javabank.model.AbstractModel;
-import org.academiadecodigo.javabank.services.CRUDService;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -10,12 +9,12 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.List;
 
-public abstract class AbstractJpaService<T extends AbstractModel> implements CRUDService<T> {
+public abstract class AbstractDao<T extends AbstractModel> implements CRUDService<T> {
 
     protected EntityManagerFactory emf;
     private Class<T> modelType;
 
-    public AbstractJpaService(EntityManagerFactory emf, Class<T> modelType) {
+    public AbstractDao(EntityManagerFactory emf, Class<T> modelType) {
         this.emf = emf;
         this.modelType = modelType;
     }
