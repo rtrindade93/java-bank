@@ -1,25 +1,25 @@
 package org.academiadecodigo.javabank.controller.transaction;
 
 import org.academiadecodigo.javabank.controller.AbstractController;
-import org.academiadecodigo.javabank.services.AccountService;
-import org.academiadecodigo.javabank.services.CustomerService;
+import org.academiadecodigo.javabank.services.Account;
+import org.academiadecodigo.javabank.services.Customer;
 
 import java.util.Set;
 
 public abstract class AbstractAccountTransactionController extends AbstractController implements AccountTransactionController {
 
-    AccountService accountService;
-    CustomerService customerService;
+    Account accountService;
+    Customer customerService;
 
     public Set<Integer> getAccountIds() {
         return customerService.getCustomerAccountIds(authService.getAccessingCustomer().getId());
     }
 
-    public void setAccountService(AccountService accountService) {
+    public void setAccountService(Account accountService) {
         this.accountService = accountService;
     }
 
-    public void setCustomerService(CustomerService customerService) {
+    public void setCustomerService(Customer customerService) {
         this.customerService = customerService;
     }
 }

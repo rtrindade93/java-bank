@@ -1,9 +1,8 @@
 package org.academiadecodigo.javabank.services;
 
-import org.academiadecodigo.javabank.model.account.Account;
-import org.academiadecodigo.javabank.persistence.dao.CRUDService;
+import org.academiadecodigo.javabank.persistence.dao.CRUD;
 
-public interface AccountService extends CRUDService<Account> {
+public interface Account extends CRUD<org.academiadecodigo.javabank.model.account.Account> {
 
     void deposit(Integer id, double amount);
 

@@ -1,9 +1,8 @@
 package org.academiadecodigo.javabank.services.jpa;
 
-import org.academiadecodigo.javabank.model.Customer;
 import org.academiadecodigo.javabank.model.account.Account;
-import org.academiadecodigo.javabank.persistence.dao.AbstractDao;
-import org.academiadecodigo.javabank.services.CustomerService;
+import org.academiadecodigo.javabank.persistence.dao.GenericDao;
+import org.academiadecodigo.javabank.services.Customer;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -11,10 +10,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class JpaCustomerService extends AbstractDao<Customer> implements CustomerService {
+public class JpaCustomer extends GenericDao<org.academiadecodigo.javabank.model.Customer> implements Customer {
 
-    public JpaCustomerService(EntityManagerFactory emf) {
-        super(emf, Customer.class);
+    public JpaCustomer(EntityManagerFactory emf) {
+        super(emf, org.academiadecodigo.javabank.model.Customer.class);
     }
 
     @Override
@@ -24,7 +23,7 @@ public class JpaCustomerService extends AbstractDao<Customer> implements Custome
 
         try {
 
-            Customer customer = em.find(Customer.class, id);
+            org.academiadecodigo.javabank.model.Customer customer = em.find(org.academiadecodigo.javabank.model.Customer.class, id);
 
             if (customer == null) {
                 throw new IllegalArgumentException("Customer does not exists");
@@ -55,7 +54,7 @@ public class JpaCustomerService extends AbstractDao<Customer> implements Custome
 
             Set<Integer> accountIds = new HashSet<>();
 
-            Customer customer = em.find(Customer.class, id);
+            org.academiadecodigo.javabank.model.Customer customer = em.find(org.academiadecodigo.javabank.model.Customer.class, id);
 
             if (customer == null) {
                 throw new IllegalArgumentException("Customer does not exists");

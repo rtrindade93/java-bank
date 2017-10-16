@@ -1,17 +1,16 @@
 package org.academiadecodigo.javabank.services.jpa;
 
-import org.academiadecodigo.javabank.model.account.Account;
-import org.academiadecodigo.javabank.persistence.dao.AbstractDao;
-import org.academiadecodigo.javabank.services.AccountService;
+import org.academiadecodigo.javabank.persistence.dao.GenericDao;
+import org.academiadecodigo.javabank.services.Account;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.RollbackException;
 
-public class JpaAccountService extends AbstractDao<Account> implements AccountService {
+public class JpaAccount extends GenericDao<org.academiadecodigo.javabank.model.account.Account> implements Account {
 
-    public JpaAccountService(EntityManagerFactory emf) {
-        super(emf, Account.class);
+    public JpaAccount(EntityManagerFactory emf) {
+        super(emf, org.academiadecodigo.javabank.model.account.Account.class);
     }
 
     @Override
@@ -23,7 +22,7 @@ public class JpaAccountService extends AbstractDao<Account> implements AccountSe
 
             em.getTransaction().begin();
 
-            Account account = em.find(Account.class, id);
+            org.academiadecodigo.javabank.model.account.Account account = em.find(org.academiadecodigo.javabank.model.account.Account.class, id);
 
             if (account == null) {
                 em.getTransaction().rollback();
@@ -55,7 +54,7 @@ public class JpaAccountService extends AbstractDao<Account> implements AccountSe
 
             em.getTransaction().begin();
 
-            Account account = em.find(Account.class, id);
+            org.academiadecodigo.javabank.model.account.Account account = em.find(org.academiadecodigo.javabank.model.account.Account.class, id);
 
             if (account == null) {
                 em.getTransaction().rollback();
@@ -88,8 +87,8 @@ public class JpaAccountService extends AbstractDao<Account> implements AccountSe
 
             em.getTransaction().begin();
 
-            Account srcAccount = em.find(Account.class, srcId);
-            Account dstAccount = em.find(Account.class, dstId);
+            org.academiadecodigo.javabank.model.account.Account srcAccount = em.find(org.academiadecodigo.javabank.model.account.Account.class, srcId);
+            org.academiadecodigo.javabank.model.account.Account dstAccount = em.find(org.academiadecodigo.javabank.model.account.Account.class, dstId);
 
             if (srcAccount == null || dstAccount == null) {
                 em.getTransaction().rollback();

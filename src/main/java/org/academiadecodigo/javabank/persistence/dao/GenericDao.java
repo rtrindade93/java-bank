@@ -9,12 +9,12 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.List;
 
-public abstract class AbstractDao<T extends AbstractModel> implements CRUDService<T> {
+public abstract class GenericDao<T extends AbstractModel> implements CRUD<T> {
 
     protected EntityManagerFactory emf;
     private Class<T> modelType;
 
-    public AbstractDao(EntityManagerFactory emf, Class<T> modelType) {
+    public GenericDao(EntityManagerFactory emf, Class<T> modelType) {
         this.emf = emf;
         this.modelType = modelType;
     }

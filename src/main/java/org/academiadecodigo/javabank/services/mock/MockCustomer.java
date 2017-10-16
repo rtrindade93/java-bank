@@ -1,12 +1,11 @@
 package org.academiadecodigo.javabank.services.mock;
 
-import org.academiadecodigo.javabank.model.Customer;
 import org.academiadecodigo.javabank.model.account.Account;
-import org.academiadecodigo.javabank.services.CustomerService;
+import org.academiadecodigo.javabank.services.Customer;
 
 import java.util.*;
 
-public class MockCustomerService extends AbstractMockService<Customer> implements CustomerService {
+public class MockCustomer extends AbstractMock<Customer> implements Customer {
 
     @Override
     public double getBalance(Integer customerId) {

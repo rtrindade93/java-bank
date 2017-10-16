@@ -1,8 +1,7 @@
 package org.academiadecodigo.javabank.controller;
 
-import org.academiadecodigo.javabank.model.Customer;
 import org.academiadecodigo.javabank.services.AuthService;
-import org.academiadecodigo.javabank.services.CustomerService;
+import org.academiadecodigo.javabank.services.Customer;
 import org.academiadecodigo.javabank.view.View;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,9 +14,9 @@ public class BalanceControllerTest {
     private final static double DOUBLE_DELTA = 0.1;
 
     private BalanceController balanceController;
-    private CustomerService customerService;
+    private Customer customerService;
     private AuthService authService;
-    private Customer customer;
+    private org.academiadecodigo.javabank.model.Customer customer;
     private View view;
 
     @Before
@@ -25,9 +24,9 @@ public class BalanceControllerTest {
 
         balanceController = new BalanceController();
         view = mock(View.class);
-        customerService = mock(CustomerService.class);
+        customerService = mock(Customer.class);
         authService = mock(AuthService.class);
-        customer = mock(Customer.class);
+        customer = mock(org.academiadecodigo.javabank.model.Customer.class);
 
         balanceController.setView(view);
         balanceController.setCustomerService(customerService);
@@ -64,7 +63,7 @@ public class BalanceControllerTest {
         // fake accessing customer
         when(authService.getAccessingCustomer()).thenReturn(customer);
 
-        Customer bCustomer = balanceController.getCustomer();
+        org.academiadecodigo.javabank.model.Customer bCustomer = balanceController.getCustomer();
         assertEquals(bCustomer, customer);
     }
 }

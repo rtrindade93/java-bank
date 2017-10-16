@@ -4,7 +4,7 @@ import org.academiadecodigo.javabank.model.AbstractModel;
 
 import java.util.List;
 
-public interface CRUDService<T extends AbstractModel> {
+public interface CRUD<T extends AbstractModel> {
 
     List<T> findAll();
 

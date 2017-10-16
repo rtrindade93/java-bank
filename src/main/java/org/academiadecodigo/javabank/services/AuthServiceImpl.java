@@ -1,16 +1,14 @@
 package org.academiadecodigo.javabank.services;
 
-import org.academiadecodigo.javabank.model.Customer;
-
 public class AuthServiceImpl implements AuthService {
 
     private Integer accessingCustomerId;
-    private CustomerService customerService;
+    private Customer customerService;
 
     @Override
     public boolean authenticate(Integer id) {
 
-        Customer customer = customerService.findById(id);
+        org.academiadecodigo.javabank.model.Customer customer = customerService.findById(id);
 
         if (customer == null) {
             return false;
@@ -21,11 +19,11 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public Customer getAccessingCustomer() {
+    public org.academiadecodigo.javabank.model.Customer getAccessingCustomer() {
         return customerService.findById(accessingCustomerId);
     }
 
-    public void setCustomerService(CustomerService customerService) {
+    public void setCustomerService(Customer customerService) {
         this.customerService = customerService;
     }
 }

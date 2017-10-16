@@ -16,11 +16,11 @@ public class JpaAccountServiceIntegrationTest extends JpaIntegrationTestHelper {
 
     private final static Integer INVALID_ID = 9999;
     private final static double DOUBLE_DELTA = 0.1;
-    private JpaAccountService as;
+    private JpaAccount as;
 
     @Before
     public void setup() {
-        as = new JpaAccountService(emf);
+        as = new JpaAccount(emf);
     }
 
 

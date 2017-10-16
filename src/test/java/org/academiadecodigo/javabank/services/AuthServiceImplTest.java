@@ -1,27 +1,21 @@
 package org.academiadecodigo.javabank.services;
 
-import org.academiadecodigo.javabank.model.Customer;
-import org.academiadecodigo.javabank.services.AuthService;
-import org.academiadecodigo.javabank.services.AuthServiceImpl;
-import org.academiadecodigo.javabank.services.CustomerService;
 import org.junit.Before;
 import org.junit.Test;
 
 import static junit.framework.TestCase.*;
-import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.ArgumentMatchers.booleanThat;
 import static org.mockito.Mockito.*;
 
 public class AuthServiceImplTest {
 
     AuthServiceImpl authService;
-    CustomerService customerService;
+    Customer customerService;
 
     @Before
     public void setup() {
 
         authService = new AuthServiceImpl();
-        customerService = mock(CustomerService.class);
+        customerService = mock(Customer.class);
 
         authService.setCustomerService(customerService);
     }
@@ -31,7 +25,7 @@ public class AuthServiceImplTest {
 
         // setup
         int fakeId = 9999;
-        Customer fakeCustomer = mock(Customer.class);
+        org.academiadecodigo.javabank.model.Customer fakeCustomer = mock(org.academiadecodigo.javabank.model.Customer.class);
         when(customerService.findById(fakeId)).thenReturn(fakeCustomer);
 
         // exercise
@@ -48,7 +42,7 @@ public class AuthServiceImplTest {
 
         // setup
         int fakeId = 9999;
-        Customer fakeCustomer = mock(Customer.class);
+        org.academiadecodigo.javabank.model.Customer fakeCustomer = mock(org.academiadecodigo.javabank.model.Customer.class);
         when(customerService.findById(fakeId)).thenReturn(null);
 
         // exercise
@@ -64,13 +58,13 @@ public class AuthServiceImplTest {
 
         // setup
         int fakeId = 9999;
-        Customer fakeCustomer = mock(Customer.class);
+        org.academiadecodigo.javabank.model.Customer fakeCustomer = mock(org.academiadecodigo.javabank.model.Customer.class);
         when(customerService.findById(fakeId)).thenReturn(fakeCustomer);
         when(fakeCustomer.getId()).thenReturn(fakeId);
         authService.authenticate(fakeId);
 
         // exercise
-        Customer customer = authService.getAccessingCustomer();
+        org.academiadecodigo.javabank.model.Customer customer = authService.getAccessingCustomer();
 
         // verify
         verify(customerService, times(2)).findById(fakeId);

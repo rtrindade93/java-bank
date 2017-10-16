@@ -2,11 +2,9 @@ package org.academiadecodigo.javabank;
 
 import org.academiadecodigo.javabank.controller.Controller;
 import org.academiadecodigo.javabank.persistence.H2WebServer;
-import org.academiadecodigo.javabank.services.jpa.JpaAccountService;
-import org.academiadecodigo.javabank.services.jpa.JpaCustomerService;
+import org.academiadecodigo.javabank.services.jpa.JpaAccount;
+import org.academiadecodigo.javabank.services.jpa.JpaCustomer;
 import org.academiadecodigo.javabank.services.AuthServiceImpl;
-import org.academiadecodigo.javabank.services.mock.MockAccountService;
-import org.h2.tools.Server;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -40,8 +38,8 @@ public class App {
         Bootstrap bootstrap = new Bootstrap();
 
         bootstrap.setAuthService(new AuthServiceImpl());
-        bootstrap.setAccountService(new JpaAccountService(emf));
-        bootstrap.setCustomerService(new JpaCustomerService(emf));
+        bootstrap.setAccountService(new JpaAccount(emf));
+        bootstrap.setCustomerService(new JpaCustomer(emf));
 
         Controller controller = bootstrap.wireObjects();
 
