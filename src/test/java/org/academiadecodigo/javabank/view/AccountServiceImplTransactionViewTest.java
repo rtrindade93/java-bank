@@ -13,7 +13,7 @@ import java.util.Set;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
-public class AccountTransactionViewTest {
+public class AccountServiceImplTransactionViewTest {
 
 
     private AccountTransactionView view;

@@ -51,7 +51,7 @@ public class Customer extends AbstractModel {
 
     @Override
     public String toString() {
-        return "Customer{" +
+        return "CustomerService{" +
                 "name='" + name + '\'' +
                 ", accounts=" + accounts +
                 "} " + super.toString();

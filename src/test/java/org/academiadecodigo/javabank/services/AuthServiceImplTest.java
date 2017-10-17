@@ -9,13 +9,13 @@ import static org.mockito.Mockito.*;
 public class AuthServiceImplTest {
 
     AuthServiceImpl authService;
-    Customer customerService;
+    CustomerService customerService;
 
     @Before
     public void setup() {
 
         authService = new AuthServiceImpl();
-        customerService = mock(Customer.class);
+        customerService = mock(CustomerService.class);
 
         authService.setCustomerService(customerService);
     }

@@ -14,18 +14,18 @@ import java.util.Set;
 
 import static org.junit.Assert.*;
 
-public class JpaCustomerServiceIntegrationTest extends JpaIntegrationTestHelper {
+public class CustomerServiceServiceServiceImplIntegrationTest extends JpaIntegrationTestHelper {
 
     private final static Integer INVALID_ID = 9999;
     private final static double DOUBLE_DELTA = 0.1;
 
-    private JpaCustomer cs;
+    private CustomerServiceImpl cs;
     private EntityManager em;
 
     @Before
     public void setUp() {
 
-        cs = new JpaCustomer(emf);
+        cs = new CustomerServiceImpl(emf);
         em = emf.createEntityManager();
     }
 
@@ -75,9 +75,9 @@ public class JpaCustomerServiceIntegrationTest extends JpaIntegrationTestHelper 
         Customer customer = cs.findById(id);
 
         // verify
-        assertNotNull("Customer is null", customer);
-        assertEquals("Customer id is wrong", id, customer.getId().intValue());
-        assertEquals("Customer name is wrong", "Rui", customer.getName());
+        assertNotNull("CustomerService is null", customer);
+        assertEquals("CustomerService id is wrong", id, customer.getId().intValue());
+        assertEquals("CustomerService name is wrong", "Rui", customer.getName());
 
     }
 
@@ -138,7 +138,7 @@ public class JpaCustomerServiceIntegrationTest extends JpaIntegrationTestHelper 
     public void testAddCustomerNoAccounts() {
 
         // setup
-        String name = "New Customer name";
+        String name = "New CustomerService name";
         Customer newCustomer = new Customer();
         newCustomer.setName(name);
 
@@ -148,7 +148,7 @@ public class JpaCustomerServiceIntegrationTest extends JpaIntegrationTestHelper 
         // verify
         assertNotNull("customer not added", addedCustomer);
         Customer customer = em.find(Customer.class, addedCustomer.getId());
-        assertNotNull("Customer not found", customer);
+        assertNotNull("CustomerService not found", customer);
 
     }
 

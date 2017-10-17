@@ -1,11 +1,11 @@
 package org.academiadecodigo.javabank.services.mock;
 
 import org.academiadecodigo.javabank.model.AbstractModel;
-import org.academiadecodigo.javabank.persistence.dao.CRUD;
+import org.academiadecodigo.javabank.persistence.dao.DAO;
 
 import java.util.*;
 
-public class AbstractMock<T extends AbstractModel> implements CRUD<T> {
+public class AbstractMock<T extends AbstractModel> implements DAO<T> {
 
     protected Map<Integer, T> modelMap = new HashMap<>();
 

@@ -1,8 +1,8 @@
 package org.academiadecodigo.javabank.controller.transaction;
 
-import org.academiadecodigo.javabank.services.Account;
+import org.academiadecodigo.javabank.services.AccountService;
 import org.academiadecodigo.javabank.services.AuthService;
-import org.academiadecodigo.javabank.services.Customer;
+import org.academiadecodigo.javabank.services.CustomerService;
 import org.academiadecodigo.javabank.view.View;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,8 +17,8 @@ public class DepositControllerTest {
 
     private DepositController depositController;
     private AuthService authService;
-    private Account accountService;
-    private Customer customerService;
+    private AccountService accountService;
+    private CustomerService customerService;
     private View view;
 
     @Before
@@ -26,8 +26,8 @@ public class DepositControllerTest {
 
         view = mock(View.class);
         authService = mock(AuthService.class);
-        accountService = mock(Account.class);
-        customerService = mock(Customer.class);
+        accountService = mock(AccountService.class);
+        customerService = mock(CustomerService.class);
 
         depositController = new DepositController();
         depositController.setCustomerService(customerService);

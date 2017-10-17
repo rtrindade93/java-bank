@@ -2,8 +2,8 @@ package org.academiadecodigo.javabank;
 
 import org.academiadecodigo.javabank.controller.Controller;
 import org.academiadecodigo.javabank.persistence.H2WebServer;
-import org.academiadecodigo.javabank.services.jpa.JpaAccount;
-import org.academiadecodigo.javabank.services.jpa.JpaCustomer;
+import org.academiadecodigo.javabank.services.jpa.AccountServiceImpl;
+import org.academiadecodigo.javabank.services.jpa.CustomerServiceImpl;
 import org.academiadecodigo.javabank.services.AuthServiceImpl;
 
 import javax.persistence.EntityManagerFactory;
@@ -38,8 +38,8 @@ public class App {
         Bootstrap bootstrap = new Bootstrap();
 
         bootstrap.setAuthService(new AuthServiceImpl());
-        bootstrap.setAccountService(new JpaAccount(emf));
-        bootstrap.setCustomerService(new JpaCustomer(emf));
+        bootstrap.setAccountService(new AccountServiceImpl(emf));
+        bootstrap.setCustomerService(new CustomerServiceImpl(emf));
 
         Controller controller = bootstrap.wireObjects();
 

@@ -12,15 +12,15 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class JpaAccountServiceIntegrationTest extends JpaIntegrationTestHelper {
+public class AccountServiceServiceServiceImplIntegrationTest extends JpaIntegrationTestHelper {
 
     private final static Integer INVALID_ID = 9999;
     private final static double DOUBLE_DELTA = 0.1;
-    private JpaAccount as;
+    private AccountServiceImpl as;
 
     @Before
     public void setup() {
-        as = new JpaAccount(emf);
+        as = new AccountServiceImpl(emf);
     }
 
 
@@ -34,10 +34,10 @@ public class JpaAccountServiceIntegrationTest extends JpaIntegrationTestHelper {
         Account account = as.findById(id);
 
         // verify
-        assertNotNull("Account is null", account);
-        assertEquals("Account id is wrong", id, account.getId().intValue());
-        assertEquals("Account type is wrong", AccountType.CHECKING.toString(), account.getAccountType().toString());
-        assertEquals("Account balance is wrong", 100, account.getBalance(), DOUBLE_DELTA);
+        assertNotNull("AccountServiceImpl is null", account);
+        assertEquals("AccountServiceImpl id is wrong", id, account.getId().intValue());
+        assertEquals("AccountServiceImpl type is wrong", AccountType.CHECKING.toString(), account.getAccountType().toString());
+        assertEquals("AccountServiceImpl balance is wrong", 100, account.getBalance(), DOUBLE_DELTA);
 
     }
 
@@ -48,7 +48,7 @@ public class JpaAccountServiceIntegrationTest extends JpaIntegrationTestHelper {
         Account account = as.findById(INVALID_ID);
 
         // verify
-        assertNull("Account should be null", account);
+        assertNull("AccountServiceImpl should be null", account);
     }
 
     @Test
@@ -94,7 +94,7 @@ public class JpaAccountServiceIntegrationTest extends JpaIntegrationTestHelper {
 
         // verify
         Account account = em.find(Account.class, id);
-        assertNotNull("Account owned by customer should not be deleted", account);
+        assertNotNull("AccountServiceImpl owned by customer should not be deleted", account);
     }
 
     @Test
@@ -108,7 +108,7 @@ public class JpaAccountServiceIntegrationTest extends JpaIntegrationTestHelper {
 
         // verify
         Account account = em.find(Account.class, id);
-        assertNull("Account is not null", account);
+        assertNull("AccountServiceImpl is not null", account);
 
     }
 
@@ -122,9 +122,9 @@ public class JpaAccountServiceIntegrationTest extends JpaIntegrationTestHelper {
         Account addedAccount = as.saveOrUpdate(newAccount);
 
         // verify
-        assertNotNull("Account not added", addedAccount);
+        assertNotNull("AccountServiceImpl not added", addedAccount);
         Account account = em.find(Account.class, addedAccount.getId());
-        assertNotNull("Account not found", account);
+        assertNotNull("AccountServiceImpl not found", account);
 
     }
 
@@ -141,7 +141,7 @@ public class JpaAccountServiceIntegrationTest extends JpaIntegrationTestHelper {
 
         // verify
         account = em.find(Account.class, id);
-        assertEquals("Account balance is wrong", 200, account.getBalance(), DOUBLE_DELTA);
+        assertEquals("AccountServiceImpl balance is wrong", 200, account.getBalance(), DOUBLE_DELTA);
 
     }
 
@@ -156,7 +156,7 @@ public class JpaAccountServiceIntegrationTest extends JpaIntegrationTestHelper {
 
         // verify
         Account account = em.find(Account.class, id);
-        assertEquals("Account balance is wrong", 200, account.getBalance(), DOUBLE_DELTA);
+        assertEquals("AccountServiceImpl balance is wrong", 200, account.getBalance(), DOUBLE_DELTA);
 
     }
 
@@ -171,7 +171,7 @@ public class JpaAccountServiceIntegrationTest extends JpaIntegrationTestHelper {
 
         // verify
         Account account = em.find(Account.class, id);
-        assertEquals("Account balance is wrong", 150.5, account.getBalance(), DOUBLE_DELTA);
+        assertEquals("AccountServiceImpl balance is wrong", 150.5, account.getBalance(), DOUBLE_DELTA);
 
     }
 
@@ -192,7 +192,7 @@ public class JpaAccountServiceIntegrationTest extends JpaIntegrationTestHelper {
 
         // verify
         Account account = em.find(Account.class, id);
-        assertEquals("Account balance is wrong", amount, account.getBalance(), DOUBLE_DELTA);
+        assertEquals("AccountServiceImpl balance is wrong", amount, account.getBalance(), DOUBLE_DELTA);
 
     }
 
@@ -207,7 +207,7 @@ public class JpaAccountServiceIntegrationTest extends JpaIntegrationTestHelper {
 
         // verify
         Account account = em.find(Account.class, id);
-        assertEquals("Account balance is wrong", 0, account.getBalance(), DOUBLE_DELTA);
+        assertEquals("AccountServiceImpl balance is wrong", 0, account.getBalance(), DOUBLE_DELTA);
 
     }
 
@@ -222,7 +222,7 @@ public class JpaAccountServiceIntegrationTest extends JpaIntegrationTestHelper {
 
         // verify
         Account account = em.find(Account.class, id);
-        assertEquals("Account balance is wrong", 100, account.getBalance(), DOUBLE_DELTA);
+        assertEquals("AccountServiceImpl balance is wrong", 100, account.getBalance(), DOUBLE_DELTA);
 
     }
 
@@ -237,7 +237,7 @@ public class JpaAccountServiceIntegrationTest extends JpaIntegrationTestHelper {
 
         // verify
         Account account = em.find(Account.class, id);
-        assertEquals("Account balance is wrong", 130, account.getBalance(), DOUBLE_DELTA);
+        assertEquals("AccountServiceImpl balance is wrong", 130, account.getBalance(), DOUBLE_DELTA);
 
     }
 
@@ -252,7 +252,7 @@ public class JpaAccountServiceIntegrationTest extends JpaIntegrationTestHelper {
 
         // verify
         Account account = em.find(Account.class, id);
-        assertEquals("Account balance is wrong", 100, account.getBalance(), DOUBLE_DELTA);
+        assertEquals("AccountServiceImpl balance is wrong", 100, account.getBalance(), DOUBLE_DELTA);
 
     }
 
@@ -267,7 +267,7 @@ public class JpaAccountServiceIntegrationTest extends JpaIntegrationTestHelper {
 
         // verify
         Account account = em.find(Account.class, id);
-        assertEquals("Account balance is wrong", 150, account.getBalance(), DOUBLE_DELTA);
+        assertEquals("AccountServiceImpl balance is wrong", 150, account.getBalance(), DOUBLE_DELTA);
 
     }
 
@@ -285,8 +285,8 @@ public class JpaAccountServiceIntegrationTest extends JpaIntegrationTestHelper {
         // verify
         Account srcAccount = em.find(Account.class, 1);
         Account dstAccount = em.find(Account.class, 2);
-        assertEquals("Source Account balance is wrong", 89.5, srcAccount.getBalance(), DOUBLE_DELTA);
-        assertEquals("Destination Account balance is wrong", 61, dstAccount.getBalance(), DOUBLE_DELTA);
+        assertEquals("Source AccountServiceImpl balance is wrong", 89.5, srcAccount.getBalance(), DOUBLE_DELTA);
+        assertEquals("Destination AccountServiceImpl balance is wrong", 61, dstAccount.getBalance(), DOUBLE_DELTA);
 
     }
 
@@ -299,8 +299,8 @@ public class JpaAccountServiceIntegrationTest extends JpaIntegrationTestHelper {
         // verify
         Account srcAccount = em.find(Account.class, 1);
         Account dstAccount = em.find(Account.class, 2);
-        assertEquals("Source Account balance is wrong", 100, srcAccount.getBalance(), DOUBLE_DELTA);
-        assertEquals("Destination Account balance is wrong", 50.5, dstAccount.getBalance(), DOUBLE_DELTA);
+        assertEquals("Source AccountServiceImpl balance is wrong", 100, srcAccount.getBalance(), DOUBLE_DELTA);
+        assertEquals("Destination AccountServiceImpl balance is wrong", 50.5, dstAccount.getBalance(), DOUBLE_DELTA);
 
     }
 

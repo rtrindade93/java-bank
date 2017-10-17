@@ -51,7 +51,7 @@ public abstract class Account extends AbstractModel {
 
     @Override
     public String toString() {
-        return "Account{" +
+        return "AccountServiceImpl{" +
                 "balance=" + balance +
                 ", customerId=" + (customer != null ? customer.getId() : null) +
                 "} " + super.toString();

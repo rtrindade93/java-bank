@@ -35,4 +35,8 @@ public class JpaTransactionManager implements TransactionManager {
 
         sm.stopSession();
     }
+
+    public void setJpaSessionManager(JpaSessionManager sm) {
+        this.sm = sm;
+    }
 }

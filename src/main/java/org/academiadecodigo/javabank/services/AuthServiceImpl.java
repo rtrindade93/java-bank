@@ -3,7 +3,7 @@ package org.academiadecodigo.javabank.services;
 public class AuthServiceImpl implements AuthService {
 
     private Integer accessingCustomerId;
-    private Customer customerService;
+    private CustomerService customerService;
 
     @Override
     public boolean authenticate(Integer id) {
@@ -23,7 +23,7 @@ public class AuthServiceImpl implements AuthService {
         return customerService.findById(accessingCustomerId);
     }
 
-    public void setCustomerService(Customer customerService) {
+    public void setCustomerService(CustomerService customerService) {
         this.customerService = customerService;
     }
 }

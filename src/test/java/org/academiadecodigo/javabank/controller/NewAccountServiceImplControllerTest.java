@@ -3,7 +3,7 @@ package org.academiadecodigo.javabank.controller;
 import org.academiadecodigo.javabank.factories.AccountFactory;
 import org.academiadecodigo.javabank.model.Customer;
 import org.academiadecodigo.javabank.model.account.AccountType;
-import org.academiadecodigo.javabank.services.Account;
+import org.academiadecodigo.javabank.services.AccountService;
 import org.academiadecodigo.javabank.services.AuthService;
 import org.academiadecodigo.javabank.view.View;
 import org.junit.Before;
@@ -13,11 +13,11 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
-public class NewAccountControllerTest {
+public class NewAccountServiceImplControllerTest {
 
     private NewAccountController newAccountController;
     private AccountFactory accountFactory;
-    private Account accountService;
+    private AccountService accountService;
     private AuthService authService;
     private Customer customer;
     private View view;
@@ -27,7 +27,7 @@ public class NewAccountControllerTest {
 
         newAccountController = new NewAccountController();
         accountFactory = mock(AccountFactory.class);
-        accountService = mock(Account.class);
+        accountService = mock(AccountService.class);
         authService = mock(AuthService.class);
         customer = mock(Customer.class);
         view = mock(View.class);

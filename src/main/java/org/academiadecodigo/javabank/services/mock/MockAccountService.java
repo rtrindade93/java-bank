@@ -1,9 +1,9 @@
 package org.academiadecodigo.javabank.services.mock;
 
 import org.academiadecodigo.javabank.model.account.AccountType;
-import org.academiadecodigo.javabank.services.Account;
+import org.academiadecodigo.javabank.services.AccountService;
 
-public class MockAccount extends AbstractMock<org.academiadecodigo.javabank.model.account.Account> implements Account {
+public class MockAccountService extends AbstractMock<org.academiadecodigo.javabank.model.account.Account> implements AccountService {
 
     public void deposit(Integer id, double amount) {
         modelMap.get(id).credit(amount);

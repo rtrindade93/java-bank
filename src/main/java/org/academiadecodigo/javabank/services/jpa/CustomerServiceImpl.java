@@ -1,8 +1,8 @@
 package org.academiadecodigo.javabank.services.jpa;
 
 import org.academiadecodigo.javabank.model.account.Account;
-import org.academiadecodigo.javabank.persistence.dao.GenericDao;
-import org.academiadecodigo.javabank.services.Customer;
+import org.academiadecodigo.javabank.persistence.dao.JpaGenericDao;
+import org.academiadecodigo.javabank.services.CustomerService;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -10,9 +10,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class JpaCustomer extends GenericDao<org.academiadecodigo.javabank.model.Customer> implements Customer {
+public class CustomerServiceImpl extends JpaGenericDao<org.academiadecodigo.javabank.model.Customer> implements CustomerService {
 
-    public JpaCustomer(EntityManagerFactory emf) {
+    public CustomerServiceImpl(EntityManagerFactory emf) {
         super(emf, org.academiadecodigo.javabank.model.Customer.class);
     }
 
@@ -26,7 +26,7 @@ public class JpaCustomer extends GenericDao<org.academiadecodigo.javabank.model.
             org.academiadecodigo.javabank.model.Customer customer = em.find(org.academiadecodigo.javabank.model.Customer.class, id);
 
             if (customer == null) {
-                throw new IllegalArgumentException("Customer does not exists");
+                throw new IllegalArgumentException("CustomerService does not exists");
             }
 
             List<Account> accounts = customer.getAccounts();
@@ -57,7 +57,7 @@ public class JpaCustomer extends GenericDao<org.academiadecodigo.javabank.model.
             org.academiadecodigo.javabank.model.Customer customer = em.find(org.academiadecodigo.javabank.model.Customer.class, id);
 
             if (customer == null) {
-                throw new IllegalArgumentException("Customer does not exists");
+                throw new IllegalArgumentException("CustomerService does not exists");
             }
 
             List<Account> accounts = customer.getAccounts();
