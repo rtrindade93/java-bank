@@ -1,10 +1,12 @@
 package org.academiadecodigo.javabank.services;
 
-import org.academiadecodigo.javabank.persistence.dao.DAO;
+import org.academiadecodigo.javabank.model.Customer;
 
 import java.util.Set;
 
-public interface CustomerService extends DAO<org.academiadecodigo.javabank.model.Customer> {
+public interface CustomerService {
+
+    Customer findById(Integer id);
 
     double getBalance(Integer id);
 

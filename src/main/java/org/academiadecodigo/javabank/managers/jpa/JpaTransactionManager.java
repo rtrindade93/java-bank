@@ -1,10 +1,17 @@
 package org.academiadecodigo.javabank.managers.jpa;
 
+import org.academiadecodigo.javabank.managers.SessionManager;
 import org.academiadecodigo.javabank.managers.TransactionManager;
+
+import javax.persistence.EntityManager;
 
 public class JpaTransactionManager implements TransactionManager {
 
-    private JpaSessionManager sm;
+    private SessionManager<EntityManager> sm;
+
+    public JpaTransactionManager(SessionManager sm) {
+        this.sm = sm;
+    }
 
     @Override
     public void beginRead() {
@@ -34,9 +41,5 @@ public class JpaTransactionManager implements TransactionManager {
         }
 
         sm.stopSession();
-    }
-
-    public void setJpaSessionManager(JpaSessionManager sm) {
-        this.sm = sm;
     }
 }

@@ -9,6 +9,10 @@ public class JpaSessionManager implements SessionManager<EntityManager> {
     private EntityManagerFactory emf; // the persistence unit
     private EntityManager em; // the persistence context
 
+    public JpaSessionManager(EntityManagerFactory emf) {
+        this.emf = emf;
+    }
+
     @Override
     public void startSession() {
 
@@ -31,9 +35,5 @@ public class JpaSessionManager implements SessionManager<EntityManager> {
     public EntityManager getCurrentSession() {
         startSession();
         return em;
-    }
-
-    public void setEntityManagerFactory(EntityManagerFactory emf) {
-        this.emf = emf;
     }
 }

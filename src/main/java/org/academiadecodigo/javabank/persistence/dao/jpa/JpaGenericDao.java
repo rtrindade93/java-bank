@@ -1,8 +1,9 @@
-package org.academiadecodigo.javabank.persistence.dao;
+package org.academiadecodigo.javabank.persistence.dao.jpa;
 
 import org.academiadecodigo.javabank.managers.SessionManager;
 import org.academiadecodigo.javabank.model.AbstractModel;
 import org.academiadecodigo.javabank.exceptions.TransactionException;
+import org.academiadecodigo.javabank.persistence.dao.DAO;
 
 import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaQuery;

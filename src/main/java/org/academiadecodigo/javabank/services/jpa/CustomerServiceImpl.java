@@ -1,63 +1,87 @@
 package org.academiadecodigo.javabank.services.jpa;
 
+import org.academiadecodigo.javabank.exceptions.TransactionException;
+import org.academiadecodigo.javabank.managers.TransactionManager;
+import org.academiadecodigo.javabank.model.Customer;
 import org.academiadecodigo.javabank.model.account.Account;
-import org.academiadecodigo.javabank.persistence.dao.JpaGenericDao;
+import org.academiadecodigo.javabank.persistence.dao.CustomerDao;
 import org.academiadecodigo.javabank.services.CustomerService;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class CustomerServiceImpl extends JpaGenericDao<org.academiadecodigo.javabank.model.Customer> implements CustomerService {
+public class CustomerServiceImpl implements CustomerService {
 
-    public CustomerServiceImpl(EntityManagerFactory emf) {
-        super(emf, org.academiadecodigo.javabank.model.Customer.class);
+    private TransactionManager transactionManager;
+    private CustomerDao customerDao;
+
+    public CustomerServiceImpl(TransactionManager transactionManager, CustomerDao customerDao) {
+        this.transactionManager = transactionManager;
+        this.customerDao = customerDao;
+    }
+
+    @Override
+    public Customer findById(Integer id) {
+        Customer customer = null;
+
+        try {
+            transactionManager.beginRead();
+
+            customer = customerDao.findById(id);
+
+            if (customer == null) {
+                throw new TransactionException("CustomerService does not exists");
+            }
+
+        } catch (TransactionException ex) {
+            transactionManager.rollback();
+        }
+
+        return customer;
     }
 
     @Override
     public double getBalance(Integer id) {
 
-        EntityManager em = emf.createEntityManager();
+        double balance = 0;
 
         try {
+            transactionManager.beginRead();
 
-            org.academiadecodigo.javabank.model.Customer customer = em.find(org.academiadecodigo.javabank.model.Customer.class, id);
+            Customer customer = customerDao.findById(id);
 
             if (customer == null) {
-                throw new IllegalArgumentException("CustomerService does not exists");
+                throw new TransactionException("CustomerService does not exists");
             }
 
             List<Account> accounts = customer.getAccounts();
 
-            double balance = 0;
+
             for (Account account : accounts) {
                 balance += account.getBalance();
             }
 
-            return balance;
-
-        } finally {
-            if (em != null) {
-                em.close();
-            }
+        } catch (TransactionException ex) {
+            transactionManager.rollback();
         }
+
+        return balance;
     }
 
     @Override
     public Set<Integer> getCustomerAccountIds(Integer id) {
 
-        EntityManager em = emf.createEntityManager();
+        Set<Integer> accountIds = new HashSet<>();
 
         try {
 
-            Set<Integer> accountIds = new HashSet<>();
+            transactionManager.beginRead();
 
-            org.academiadecodigo.javabank.model.Customer customer = em.find(org.academiadecodigo.javabank.model.Customer.class, id);
+            Customer customer = customerDao.findById(id);
 
             if (customer == null) {
-                throw new IllegalArgumentException("CustomerService does not exists");
+                throw new TransactionException("CustomerService does not exists");
             }
 
             List<Account> accounts = customer.getAccounts();
@@ -66,13 +90,10 @@ public class CustomerServiceImpl extends JpaGenericDao<org.academiadecodigo.java
                 accountIds.add(account.getId());
             }
 
-            return accountIds;
-
-        } finally {
-            if (em != null) {
-                em.close();
-            }
+        } catch (TransactionException ex) {
+            transactionManager.rollback();
         }
 
+        return accountIds;
     }
 }

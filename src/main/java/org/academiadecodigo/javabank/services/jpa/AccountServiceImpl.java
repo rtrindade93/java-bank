@@ -89,4 +89,24 @@ public class AccountServiceImpl implements AccountService {
             transactionManager.rollback();
         }
     }
+
+    @Override
+    public Account createAccount(Account account) {
+
+        Account savedAccount = null;
+
+        try {
+
+            transactionManager.beginWrite();
+
+            savedAccount = accountDao.saveOrUpdate(account);
+
+            transactionManager.commit();
+
+        } catch (TransactionException ex) {
+            transactionManager.rollback();
+        }
+
+        return savedAccount;
+    }
 }
