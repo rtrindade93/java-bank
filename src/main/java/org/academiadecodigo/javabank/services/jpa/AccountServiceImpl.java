@@ -26,6 +26,7 @@ public class AccountServiceImpl implements AccountService {
             Account account = accountDao.findById(id);
 
             if (account == null) {
+                transactionManager.rollback();
                 throw new TransactionException("invalid account id");
             }
 
@@ -48,6 +49,7 @@ public class AccountServiceImpl implements AccountService {
             Account account = accountDao.findById(id);
 
             if (account == null) {
+                transactionManager.rollback();
                 throw new TransactionException("invalid account");
             }
 
@@ -71,6 +73,7 @@ public class AccountServiceImpl implements AccountService {
             Account dstAccount = accountDao.findById(dstId);
 
             if (srcAccount == null || dstAccount == null) {
+                transactionManager.rollback();
                 throw new TransactionException("invalid account id");
             }
 

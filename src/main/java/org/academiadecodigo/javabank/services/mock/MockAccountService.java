@@ -1,9 +1,10 @@
 package org.academiadecodigo.javabank.services.mock;
 
+import org.academiadecodigo.javabank.model.account.Account;
 import org.academiadecodigo.javabank.model.account.AccountType;
 import org.academiadecodigo.javabank.services.AccountService;
 
-public class MockAccountService extends AbstractMock<org.academiadecodigo.javabank.model.account.Account> implements AccountService {
+public class MockAccountService extends AbstractMock<Account> implements AccountService {
 
     public void deposit(Integer id, double amount) {
         modelMap.get(id).credit(amount);
@@ -21,13 +22,19 @@ public class MockAccountService extends AbstractMock<org.academiadecodigo.javaba
 
     public void transfer(Integer srcId, Integer dstId, double amount) {
 
-        org.academiadecodigo.javabank.model.account.Account srcAccount = modelMap.get(srcId);
-        org.academiadecodigo.javabank.model.account.Account dstAccount = modelMap.get(dstId);
+        Account srcAccount = modelMap.get(srcId);
+        Account dstAccount = modelMap.get(dstId);
 
         // make sure transaction can be performed
         if (srcAccount.canDebit(amount) && dstAccount.canCredit(amount)) {
             srcAccount.debit(amount);
             dstAccount.credit(amount);
         }
+    }
+
+    @Override
+    public Account createAccount(Account account) {
+        modelMap.put(account.getId(), account);
+        return account;
     }
 }

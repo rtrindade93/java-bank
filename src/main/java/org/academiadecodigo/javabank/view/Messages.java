@@ -23,7 +23,7 @@ public class Messages {
     public final static String VIEW_ACCOUNT_TRANSACTION_ACCOUNTID_MESSAGE = "Please insert your account number: ";
     public final static String VIEW_ACCOUNT_TRANSACTION_AMOUNT_MESSAGE = "Please insert amount: ";
 
-    public final static String MENU_OPEN_ACCOUNT = "Open AccountServiceImpl";
+    public final static String MENU_OPEN_ACCOUNT = "Open Account";
     public final static String MENU_DEPOSIT = "Make Deposit";
     public final static String MENU_WITHDRAW = "Make Withdrawal";
     public final static String MENU_GET_BALANCE = "View Balance";

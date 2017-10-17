@@ -23,56 +23,53 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Customer findById(Integer id) {
-        Customer customer = null;
 
         try {
             transactionManager.beginRead();
 
-            customer = customerDao.findById(id);
+            Customer customer = customerDao.findById(id);
 
             if (customer == null) {
-                throw new TransactionException("CustomerService does not exists");
+                throw new IllegalArgumentException("CustomerService does not exists");
             }
 
-        } catch (TransactionException ex) {
-            transactionManager.rollback();
+            return customer;
+
+        } finally {
+            transactionManager.commit();
         }
 
-        return customer;
     }
 
     @Override
     public double getBalance(Integer id) {
 
-        double balance = 0;
-
         try {
             transactionManager.beginRead();
 
             Customer customer = customerDao.findById(id);
 
             if (customer == null) {
-                throw new TransactionException("CustomerService does not exists");
+                throw new IllegalArgumentException("CustomerService does not exists");
             }
 
             List<Account> accounts = customer.getAccounts();
 
+            double balance = 0;
 
             for (Account account : accounts) {
                 balance += account.getBalance();
             }
 
-        } catch (TransactionException ex) {
-            transactionManager.rollback();
-        }
+            return balance;
 
-        return balance;
+        } finally {
+            transactionManager.commit();
+        }
     }
 
     @Override
     public Set<Integer> getCustomerAccountIds(Integer id) {
-
-        Set<Integer> accountIds = new HashSet<>();
 
         try {
 
@@ -81,19 +78,22 @@ public class CustomerServiceImpl implements CustomerService {
             Customer customer = customerDao.findById(id);
 
             if (customer == null) {
+                transactionManager.rollback();
                 throw new TransactionException("CustomerService does not exists");
             }
 
             List<Account> accounts = customer.getAccounts();
 
+            Set<Integer> accountIds = new HashSet<>();
+
             for (Account account : accounts) {
                 accountIds.add(account.getId());
             }
 
-        } catch (TransactionException ex) {
-            transactionManager.rollback();
-        }
+            return accountIds;
 
-        return accountIds;
+        } finally {
+            transactionManager.commit();
+        }
     }
 }
