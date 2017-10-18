@@ -2,7 +2,10 @@ package org.academiadecodigo.javabank.model;
 
 import org.academiadecodigo.javabank.model.account.Account;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -4,7 +4,9 @@ import org.academiadecodigo.javabank.model.Customer;
 import org.academiadecodigo.javabank.model.account.Account;
 import org.academiadecodigo.javabank.services.CustomerService;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class MockCustomerService extends AbstractMockService<Customer> implements CustomerService {
 
