@@ -23,7 +23,8 @@ public class JpaAccountDaoIntegrationTest extends JpaIntegrationTestHelper {
     @Before
     public void setup() {
 
-        accountDao = new JpaAccountDao(sm);
+        accountDao = new JpaAccountDao();
+        accountDao.setSm(sm);
 
     }
 

@@ -11,14 +11,17 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.List;
 
-public class GenericJpaDao<T extends Model> implements Dao<T> {
+public abstract class GenericJpaDao<T extends Model> implements Dao<T> {
 
     protected JpaSessionManager sm;
     protected Class<T> modelType;
 
-    public GenericJpaDao(JpaSessionManager sm, Class<T> modelType) {
-        this.sm = sm;
+    public GenericJpaDao(Class<T> modelType) {
         this.modelType = modelType;
+    }
+
+    public void setSm(JpaSessionManager sm) {
+        this.sm = sm;
     }
 
     @Override
@@ -34,6 +37,8 @@ public class GenericJpaDao<T extends Model> implements Dao<T> {
 
             // Using JPQL
 //            return em.createQuery( "from " + modelType.getSimpleName(), modelType).getResultList();
+
+
 
         } catch (HibernateException ex) {
             throw new TransactionException(ex);

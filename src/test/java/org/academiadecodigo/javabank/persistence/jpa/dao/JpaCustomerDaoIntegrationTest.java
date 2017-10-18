@@ -23,7 +23,8 @@ public class JpaCustomerDaoIntegrationTest extends JpaIntegrationTestHelper {
 
     @Before
     public void setup() {
-        customerDao = new JpaCustomerDao(sm);
+        customerDao = new JpaCustomerDao();
+        customerDao.setSm(sm);
     }
 
     @Test

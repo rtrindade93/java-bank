@@ -1,64 +1,33 @@
 package org.academiadecodigo.javabank;
 
 import org.academiadecodigo.javabank.controller.Controller;
-import org.academiadecodigo.javabank.persistence.H2WebServer;
-import org.academiadecodigo.javabank.persistence.SessionManager;
-import org.academiadecodigo.javabank.persistence.TransactionManager;
-import org.academiadecodigo.javabank.persistence.dao.jpa.JpaAccountDao;
-import org.academiadecodigo.javabank.persistence.dao.jpa.JpaCustomerDao;
-import org.academiadecodigo.javabank.persistence.jpa.JpaSessionManager;
-import org.academiadecodigo.javabank.persistence.jpa.JpaTransactionManager;
-import org.academiadecodigo.javabank.services.AccountServiceImpl;
-import org.academiadecodigo.javabank.services.AuthServiceImpl;
-import org.academiadecodigo.javabank.services.CustomerServiceImpl;
-
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import java.sql.SQLException;
+import org.academiadecodigo.javabank.controller.LoginController;
+import org.springframework.context.support.GenericXmlApplicationContext;
 
 public class App {
 
     public static void main(String[] args) {
 
-        try {
+        App app = new App();
+        app.bootStrap();
 
-            H2WebServer h2WebServer = new H2WebServer();
-            h2WebServer.start();
-
-            EntityManagerFactory emf = Persistence.createEntityManagerFactory(Config.PERSISTENCE_UNIT);
-            JpaSessionManager sm = new JpaSessionManager(emf);
-            TransactionManager tx = new JpaTransactionManager(sm);
-
-            App app = new App();
-            app.bootStrap(tx, sm);
-
-            emf.close();
-            h2WebServer.stop();
-
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
     }
 
-    private void bootStrap(TransactionManager tx, JpaSessionManager sm) {
+    private void bootStrap() {
 
-        AccountServiceImpl accountService = new AccountServiceImpl();
-        accountService.setAccountDao(new JpaAccountDao(sm));
-        accountService.setTransactionManager(tx);
+        GenericXmlApplicationContext ctx = new GenericXmlApplicationContext();
+        ctx.getEnvironment().setActiveProfiles(getProfile());
+        ctx.load(Config.SPRING_CONFIG);
+        ctx.refresh();
 
-        CustomerServiceImpl customerService = new CustomerServiceImpl();
-        customerService.setCustomerDao(new JpaCustomerDao(sm));
-        customerService.setTransactionManager(tx);
-
-        Bootstrap bootstrap = new Bootstrap();
-
-        bootstrap.setAuthService(new AuthServiceImpl());
-        bootstrap.setAccountService(accountService);
-        bootstrap.setCustomerService(customerService);
-
-        Controller controller = bootstrap.wireObjects();
-
-        // start application
+        Controller controller = ctx.getBean(LoginController.class);
         controller.init();
+    }
+
+    private String getProfile() {
+
+        String target = System.getenv(Config.SPRING_PROFILE_ENV_VAR);
+        return target == null ? Config.SPRING_DEFAULT_PROFILE : target;
+
     }
 }
