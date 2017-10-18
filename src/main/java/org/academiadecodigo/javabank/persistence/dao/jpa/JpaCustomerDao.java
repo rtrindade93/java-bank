@@ -11,8 +11,8 @@ import java.util.List;
 
 public class JpaCustomerDao extends GenericJpaDao<Customer> implements CustomerDao {
 
-    public JpaCustomerDao(JpaSessionManager sm) {
-        super(sm, Customer.class);
+    public JpaCustomerDao() {
+        super(Customer.class);
     }
 
     public List<Integer> getCustomerIds() {
