@@ -15,9 +15,9 @@
         <property name="controllerMap">
             <map>
                 <entry key="1" value-ref="balanceController"/>
-                <entry key="2" value-ref="newAccountController"/>
-                <entry key="3" value-ref="depositController"/>
-                <entry key="4" value-ref="withdrawController"/>
+                <entry key="4" value-ref="newAccountController"/>
+                <entry key="2" value-ref="depositController"/>
+                <entry key="3" value-ref="withdrawController"/>
             </map>
         </property>
     </bean>

@@ -5,7 +5,7 @@
 
     <bean id="h2WebServer" class="org.academiadecodigo.javabank.persistence.H2WebServer" init-method="start" destroy-method="stop"/>
 
-    <import resource="persistence/bd/test.xml"/>
+    <import resource="persistence/db/dev.xml"/>
 
     <import resource="persistence/managers.xml"/>
 
