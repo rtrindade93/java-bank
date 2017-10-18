@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="h2WebServer" class="org.academiadecodigo.javabank.persistence.H2WebServer"/>
+
+    <import resource="persistence/bd/test.xml"/>
+
+    <import resource="persistence/managers.xml"/>
+
+    <import resource="persistence/daos.xml"/>
+
+    <import resource="services.xml"/>
+
+    <import resource="controllers.xml"/>
+
+    <import resource="views.xml"/>
+
+</beans>
