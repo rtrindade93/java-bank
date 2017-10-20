@@ -23,12 +23,6 @@
         </dependency>
 
         <dependency>
-            <groupId>org.academiadecodigo.bootcamp</groupId>
-            <artifactId>prompt-view</artifactId>
-            <version>0.1-SNAPSHOT</version>
-        </dependency>
-
-        <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
             <version>4.3.11.RELEASE</version>
@@ -69,10 +63,24 @@
             <artifactId>h2</artifactId>
             <version>1.4.196</version>
         </dependency>
+
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.44</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>4.3.11.RELEASE</version>
         </dependency>
 
     </dependencies>
@@ -117,6 +125,17 @@
 
                     </transformers>
                     <createDependencyReducedPom>false</createDependencyReducedPom>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <url>http://localhost:8080/manager/text</url>
+                    <!-- server defined in ~/.m2/settings.xml -->
+                    <server>rt</server>
+                    <path>/rt</path>
                 </configuration>
             </plugin>
         </plugins>

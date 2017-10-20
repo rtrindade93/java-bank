@@ -9,6 +9,5 @@
 
     <import resource="persistence.xml"/>
     <import resource="services.xml"/>
-    <import resource="presentation.xml"/>
 
 </beans>
