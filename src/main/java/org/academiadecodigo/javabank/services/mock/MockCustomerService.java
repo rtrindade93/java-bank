@@ -42,6 +42,6 @@ public class MockCustomerService extends AbstractMockService<Customer> implement
 
     @Override
     public List<Customer> findAll() {
-        return null;
+        return new ArrayList<Customer>(modelMap.values());
     }
 }
