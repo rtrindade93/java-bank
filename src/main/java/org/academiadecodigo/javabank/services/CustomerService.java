@@ -15,4 +15,6 @@ public interface CustomerService {
 
     List<Customer> findAll();
 
+    void delete(Integer id);
+
 }
