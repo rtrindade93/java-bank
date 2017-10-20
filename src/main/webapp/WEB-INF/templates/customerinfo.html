@@ -9,7 +9,7 @@
     <h1 th:text="'Name: ' + ${customer.firstName} + ' ' + ${customer.lastName}"></h1>
     <br>
     <h4 th:text="'Email: ' + ${customer.email}"></h4>
-    <h4 th:text="'Phone: ' + ${customer.email}"></h4>
+    <h4 th:text="'Phone: ' + ${customer.phone}"></h4>
     <h2>Accounts List</h2>
     <br>
     <table>
@@ -23,7 +23,7 @@
         </tr>
     </table>
 
-    <a th:href="/rt/customer/">Back</a>
+    <a th:href="'/rt/customer/'">Back</a>
 </div>
 </body>
 </html>
