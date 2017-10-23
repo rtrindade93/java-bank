@@ -14,8 +14,16 @@ public class Converter {
     }
 
     public Customer CustomerDtoToCustomer(CustomerDTO customerDTO) {
-        Customer customer = customerDao.findById(customerDTO.getId());
-        customer.setVersion(customerDTO.getVersion());
+
+        Customer customer = null;
+
+        if(customerDTO.getId() != null){
+            customer = customerDao.findById(customerDTO.getId());
+        }
+        else {
+            customer = new Customer();
+        }
+
         customer.setFirstName(customerDTO.getFirstName());
         customer.setLastName(customerDTO.getLastName());
         customer.setEmail(customerDTO.getEmail());
@@ -25,7 +33,7 @@ public class Converter {
     }
 
     public CustomerDTO CustomerToCustomerDto(Customer customer) {
-        return new CustomerDTO(customer.getId(), customer.getVersion(), customer.getFirstName(),
+        return new CustomerDTO(customer.getId(), customer.getFirstName(),
                 customer.getLastName(), customer.getPhone(), customer.getEmail());
     }
 }

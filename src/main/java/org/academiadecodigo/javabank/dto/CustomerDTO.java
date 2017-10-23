@@ -1,22 +1,33 @@
 package org.academiadecodigo.javabank.dto;
 
-import org.academiadecodigo.javabank.model.Customer;
+import javax.validation.constraints.*;
 
 public class CustomerDTO {
 
     private Integer id;
-    private Integer version;
+
+    @NotNull(message = "first name is mandatory")
+    @NotBlank(message = "first name is mandatory")
+    @Size(min=3, max=64)
     private String firstName;
+
+    @NotNull(message = "last name is mandatory")
+    @NotBlank(message = "last name is mandatory")
+    @Size(min=3, max=64)
     private String lastName;
+
+    @Pattern(regexp = "\\+?[0-9]*", message = "phone has invalid characters")
+    @Size(min=9, max=16)
     private String phone;
+
+    @Email
     private String email;
 
     public CustomerDTO() {
     }
 
-    public CustomerDTO(Integer id, Integer version, String firstName, String lastName, String phone, String email) {
+    public CustomerDTO(Integer id, String firstName, String lastName, String phone, String email) {
         this.id = id;
-        this.version = version;
         this.firstName = firstName;
         this.lastName = lastName;
         this.phone = phone;
@@ -29,14 +40,6 @@ public class CustomerDTO {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getVersion() {
-        return version;
-    }
-
-    public void setVersion(Integer version) {
-        this.version = version;
     }
 
     public String getFirstName() {
