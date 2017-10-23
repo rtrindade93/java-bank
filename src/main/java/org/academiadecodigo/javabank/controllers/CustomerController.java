@@ -1,5 +1,7 @@
 package org.academiadecodigo.javabank.controllers;
 
+import org.academiadecodigo.javabank.dto.Converter;
+import org.academiadecodigo.javabank.dto.CustomerDTO;
 import org.academiadecodigo.javabank.model.Customer;
 import org.academiadecodigo.javabank.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,8 @@ public class CustomerController {
 
     @Autowired
     private CustomerService customerService;
+    @Autowired
+    private Converter converter;
 
     @RequestMapping(method = RequestMethod.GET, path = {"/customer", "/", ""})
     public String showCustomers(Model model) {
@@ -51,7 +55,7 @@ public class CustomerController {
     @RequestMapping(method = RequestMethod.GET, path = "/customer/edit/{id}")
     public String editCustomer(@PathVariable Integer id, Model model) {
 
-        model.addAttribute("customer", customerService.findById(id));
+        model.addAttribute("customer", converter.CustomerToCustomerDto(customerService.findById(id)));
 
         return "customerEditAdd";
     }
@@ -59,15 +63,15 @@ public class CustomerController {
     @RequestMapping(method = RequestMethod.GET, path = "/customer/add")
     public String addCustomer(Model model) {
 
-        model.addAttribute("customer", new Customer());
+        model.addAttribute("customer", new CustomerDTO());
 
         return "customerEditAdd";
     }
 
     @RequestMapping(method = RequestMethod.POST, path = {"/customer/persist", ""})
-    public String persistCustomer(@ModelAttribute Customer customer, RedirectAttributes redirectAttributes) {
+    public String persistCustomer(@ModelAttribute CustomerDTO customer, RedirectAttributes redirectAttributes) {
 
-        Customer savedCustomer = customerService.add(customer);
+        Customer savedCustomer = customerService.add(converter.CustomerDtoToCustomer(customer));
         redirectAttributes.addFlashAttribute("lastAction", "Added/Edited customer " + savedCustomer.getFirstName()
                                 + " " + savedCustomer.getLastName() + " successfully!");
 

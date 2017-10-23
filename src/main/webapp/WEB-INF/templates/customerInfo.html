@@ -15,10 +15,12 @@
     <table>
         <tr>
             <th>Id</th>
+            <th>Type</th>
             <th>Balance</th>
         </tr>
         <tr th:each="account : ${accounts}">
             <td th:text="${account.id}"></td>
+            <td th:text="${account.getAccountType()}"></td>
             <td th:text="${account.balance}"></td>
         </tr>
     </table>

@@ -1,5 +1,6 @@
 package org.academiadecodigo.javabank.model;
 
+import org.academiadecodigo.javabank.dto.CustomerDTO;
 import org.academiadecodigo.javabank.model.account.Account;
 
 import javax.persistence.*;

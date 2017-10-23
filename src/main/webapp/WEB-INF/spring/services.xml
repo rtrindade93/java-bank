@@ -15,6 +15,10 @@
         <property name="accountDao" ref="accountDao"/>
     </bean>
 
+    <bean id="converter" class="org.academiadecodigo.javabank.dto.Converter">
+        <property name="customerDao" ref="customerDao"/>
+    </bean>
+
     <bean id="accountFactory" class="org.academiadecodigo.javabank.factories.AccountFactory"/>
 
 </beans>
