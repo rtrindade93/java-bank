@@ -51,7 +51,7 @@ public class MockCustomerService extends AbstractMockService<Customer> implement
     }
 
     @Override
-    public void add(Customer customer) {
-
+    public Customer add(Customer customer) {
+        return customer;
     }
 }

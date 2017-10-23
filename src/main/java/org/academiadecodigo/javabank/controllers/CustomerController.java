@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class CustomerController {
@@ -16,7 +17,7 @@ public class CustomerController {
     @Autowired
     private CustomerService customerService;
 
-    @RequestMapping(method = RequestMethod.GET, value = "/customer")
+    @RequestMapping(method = RequestMethod.GET, path = {"/customer", "/", ""})
     public String showCustomers(Model model) {
 
         model.addAttribute("customers", customerService.findAll());
@@ -25,8 +26,12 @@ public class CustomerController {
 
     }
 
-    @RequestMapping(method = RequestMethod.GET, path = "/customer/delete/{id}")
-    public String deleteCustomer(@PathVariable Integer id) {
+    @RequestMapping(method = RequestMethod.GET, path = {"/customer/delete/{id}", ""})
+    public String deleteCustomer(@PathVariable Integer id, RedirectAttributes redirectAttributes) {
+
+        Customer deletedCustomer = customerService.findById(id);
+        redirectAttributes.addFlashAttribute("lastAction", "Deleted customer " + deletedCustomer.getFirstName()
+                + " " + deletedCustomer.getLastName() + " successfully!");
 
         customerService.delete(id);
 
@@ -59,10 +64,12 @@ public class CustomerController {
         return "customerEditAdd";
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/customer/persist")
-    public String persistCustomer(@ModelAttribute Customer customer) {
+    @RequestMapping(method = RequestMethod.POST, path = {"/customer/persist", ""})
+    public String persistCustomer(@ModelAttribute Customer customer, RedirectAttributes redirectAttributes) {
 
-        customerService.add(customer);
+        Customer savedCustomer = customerService.add(customer);
+        redirectAttributes.addFlashAttribute("lastAction", "Added/Edited customer " + savedCustomer.getFirstName()
+                                + " " + savedCustomer.getLastName() + " successfully!");
 
         return "redirect:/customer/";
     }
