@@ -15,6 +15,7 @@
             <th>Email</th>
             <th>Phone</th>
             <th>Show</th>
+            <th>Edit</th>
             <th>Delete</th>
         </tr>
         <tr th:each="customer : ${customers}">
@@ -24,9 +25,11 @@
             <td th:text="${customer.email}"></td>
             <td th:text="${customer.phone}"></td>
             <td><a th:href="'/rt/customer/show/'+${customer.id}">Show</a></td>
+            <td><a th:href="'/rt/customer/edit/'+${customer.id}">Edit</a></td>
             <td><a th:href="'/rt/customer/delete/'+${customer.id}">Delete</a></td>
         </tr>
     </table>
+    <a th:href="'/rt/customer/add/'">Add new customer</a>
 </div>
 </body>
 </html>

@@ -17,4 +17,6 @@ public interface CustomerService {
 
     void delete(Integer id);
 
+    void add(Customer customer);
+
 }
